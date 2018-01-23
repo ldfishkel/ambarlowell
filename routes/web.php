@@ -35,6 +35,16 @@ Route::put('/products/update',       'ProductController@update')->name('products
 Route::post('/products/images/{id}', 'ProductController@images')->name('products.images');
 
 ///////////////////////////////////////////////////////////////////////////////////////
+// STOCK
+///////////////////////////////////////////////////////////////////////////////////////
+
+Route::get('/products/{id}/stock',        'StockController@index')->name('stock.index');
+Route::get('/products/{id}/stock/data',   'StockController@data')->name('stock.data');
+Route::get('/products/{id}/stock/add',    'StockController@add')->name('stock.add');
+Route::post('/products/{id}/stock/create', 'StockController@create')->name('stock.create');
+
+
+///////////////////////////////////////////////////////////////////////////////////////
 // SALES
 ///////////////////////////////////////////////////////////////////////////////////////
 

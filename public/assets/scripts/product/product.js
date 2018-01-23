@@ -1,6 +1,6 @@
 jQuery(document).ready(function() {
     
-    var table = $('#users-table').DataTable({
+    var table = $('#product-table').DataTable({
         processing: true,
         serverSide: true,
         ajax: { url : "/products/data"},
@@ -15,8 +15,10 @@ jQuery(document).ready(function() {
             { data: 'cost', name: 'cost' },
             { data: 'wholesale', name: 'wholesale' },
             { data: 'retail', name: 'retail' },
-            { data: "Edit/View", orderable: false,  
-              defaultContent : '<a href="javascript:;" class="btn btn-warning btn-xs edit">Edit</a><a style="margin-left:5px" href="javascript:;" class="btn btn-info btn-xs view">View</a>' }
+            { data: "Action", orderable: false,  
+              defaultContent : '<a href="javascript:;" class="btn btn-warning btn-xs edit">Edit</a>' + 
+                               '<a style="margin-left:5px" href="javascript:;" class="btn btn-info btn-xs view">View</a>' +
+                               '<a style="margin-left:5px" href="javascript:;" class="btn btn-dark btn-xs stock">Stock</a>' }
         ]
     });
 
@@ -28,6 +30,11 @@ jQuery(document).ready(function() {
     table.on('click', '.view', function (e) {
         var id = $(this).parent().siblings(":first").text();
         window.location.href = "/products/view/" + id; 
+    });
+
+    table.on('click', '.stock', function (e) {
+        var id = $(this).parent().siblings(":first").text();
+        window.location.href = "/products/" + id + "/stock"; 
     });
 
 });
