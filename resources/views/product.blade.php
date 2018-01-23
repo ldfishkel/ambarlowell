@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="panel-body">
-                   <table class="table table-bordered" id="users-table">
+                   <table style="width:100%" class="table table-bordered" id="users-table">
                         <thead>
                             <tr>
                                 <th>Id</th>
