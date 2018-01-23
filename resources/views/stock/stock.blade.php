@@ -7,26 +7,27 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
+
+                {{ Form::hidden('id', $product_id, array('id' => 'product_id', 'class' => 'form-control')) }}
+
+
                 <div style="height:70px" class="panel-heading">
                     <div style="display: inline-block; margin:0px; padding:0px; float:left">
-                        <h3>Products</h3>
+                        <h3>Stock</h3>
                     </div>
                     <div style="display: inline-block; margin:0px; padding:0px; float:right">
-                        <a href="{{ url('/products/add') }}" style="float:left" class=" col btn btn-primary">Add</a>
+                        <a href="{{ url('/products/' . $product_id . '/stock/add') }}" style="float:left" class=" col btn btn-primary">Add</a>
                     </div>
                 </div>
 
                 <div class="panel-body">
-                   <table style="width:100%" class="table table-bordered" id="product-table">
+                   <table style="width:100%" class="table table-bordered" id="stock-table">
                         <thead>
                             <tr>
-                                <th>Id</th>
-                                <th>Model</th>
-                                <th>Fabricated</th>
-                                <th>Cost</th>
-                                <th>Wholesale</th>
-                                <th>Retail</th>
-                                <th>Action</th>
+                                <th>Entrance</th>
+                                <th>Current</th>
+                                <th>Initial</th>
+                                <th>Settlement</th>
                             </tr>
                         </thead>
                     </table>
@@ -41,6 +42,6 @@
 @section('scripts')
     {{ HTML::script('assets/scripts/jquery.min.js') }}
     {{ HTML::script('assets/scripts/datatables.js') }}
-    {{ HTML::script('assets/scripts/product/product.js') }}
+    {{ HTML::script('assets/scripts/stock/stock.js') }}
 @endsection
 
