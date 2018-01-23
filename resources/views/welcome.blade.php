@@ -79,7 +79,7 @@
             @endif
 
             <div class="content">
-                <img src="http://admin-local.ambarlowell.com/img/Logo.v4.png">
+                <img style="width:100%" src="/img/Logo.v4.png">
             </div>
         </div>
     </body>
