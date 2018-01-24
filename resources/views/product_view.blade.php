@@ -83,7 +83,7 @@
                         </div>
                     </div>
 
-                    @if (is_dir(public_path().'/assets/img/'.$product->id))
+                    @if (is_dir(public_path().'/assets/img/'.$product->model))
                     
                     <div style="width:50%; float:none; margin:auto">
                         <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -91,7 +91,7 @@
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner">
 
-                                @foreach (File::allFiles(public_path().'/assets/img/'.$product->id) as $file)
+                                @foreach (File::allFiles(public_path().'/assets/img/'.$product->model) as $file)
 
                                     <div class="item">
                                         <img src="/assets/img/{{ $product->id.'/'.$file->getRelativePathName() }}" style="width:100%;">
