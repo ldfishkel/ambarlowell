@@ -14,10 +14,12 @@ jQuery(document).ready(function() {
     $("form#data").submit(function(e) {
         e.preventDefault();    
         var formData = new FormData(this);
-        var id = $("#model").val();
+        
+        var model = $("#model").val();
+        var id = $("#id").val();
 
         $.ajax({
-            url: '/products/images/' + id,
+            url: '/products/images/' + model,
             type: 'POST',
             data: formData,
             headers: {
