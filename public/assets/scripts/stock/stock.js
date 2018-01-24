@@ -1,5 +1,4 @@
 jQuery(document).ready(function() {
-    alert("hola!");
     var id = $("#product_id").val();
 
     var table = $('#stock-table').DataTable({
