@@ -94,7 +94,7 @@
                                 @foreach (File::allFiles(public_path().'/assets/img/'.$product->model) as $file)
 
                                     <div class="item">
-                                        <img src="/assets/img/{{ $product->id.'/'.$file->getRelativePathName() }}" style="width:100%;">
+                                        <img src="/assets/img/{{ $product->model.'/'.$file->getRelativePathName() }}" style="width:100%;">
                                     </div>
    
                                 @endforeach
