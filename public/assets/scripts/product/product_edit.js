@@ -14,7 +14,7 @@ jQuery(document).ready(function() {
     $("form#data").submit(function(e) {
         e.preventDefault();    
         var formData = new FormData(this);
-        var id = $("#id").val();
+        var id = $("#model").val();
 
         $.ajax({
             url: '/products/images/' + id,
