@@ -12,6 +12,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jquery-ui.structure.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jquery-ui.theme.min.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -47,9 +51,10 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li style="float:left">
-                                <a style="float:left" href="{{ url('/products') }}">Productos</a>
-                                <a style="float:left" href="{{ url('/sales') }}">Ventas</a>
-                                <a style="float:left" href="{{ url('/costs') }}">Costos</a>
+                                <a style="float:left" href="{{ url('/orders') }}">Orders</a>
+                                <a style="float:left" href="{{ url('/products') }}">Products</a>
+                                <a style="float:left" href="{{ url('/sales') }}">Sales</a>
+                                <a style="float:left" href="{{ url('/costs') }}">Costs</a>
                             </li>
                             <li class="dropdown">
                                 

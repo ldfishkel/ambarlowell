@@ -18,4 +18,8 @@ class Product extends \Eloquent
 
     public $timestamps = false;
 
+    public function totalStock() {
+        return Stock::where('product_id', $this->id)->sum('current');
+    }
+
 }

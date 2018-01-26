@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Response;
 use Yajra\Datatables\Datatables;
 use App\Models\Product;
 use App\Logger\AmbarLogger;
@@ -86,5 +87,29 @@ class ProductController extends Controller
             }
         }
 
+    }
+
+    public function autocomplete(){
+        $term = Input::get('term');
+        
+        $results = array();
+        
+        $queries = Product::where('model', 'LIKE', '%'.$term.'%')
+            ->orWhere('description', 'LIKE', '%'.$term.'%')
+            ->take(5)->get();
+        
+        foreach ($queries as $query) {
+            $results[] = [ 
+               'id' => $query->id, 
+               'value' => $query->model . " - " . $query->description,
+               'model' => $query->model,
+               'description' => $query->description,
+               'wholesale' => $query->wholesale,
+               'retail' => $query->retail,
+               'stock' => $query->totalStock()
+            ];
+        }
+        
+        return Response::json($results);
     }
 }
