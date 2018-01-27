@@ -16,20 +16,61 @@
                     </div>
                 </div>
 
-                <div class="panel-body">
-                   <table style="width:100%" class="table table-bordered" id="order-table">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Type</th>
-                                <th>Client</th>
-                                <th>Status</th>
-                                <th>Date</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                    </table>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#pending">Pending</a></li>
+                    <li><a data-toggle="tab" href="#sold">Sold</a></li>
+                    <li><a data-toggle="tab" href="#cancelled">Cancelled</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="pending" class="tab-pane fade in active">
+                        <div class="panel-body">
+                           <table style="width:100%" class="table table-bordered" id="order-table-pending">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Stock</th>
+                                        <th>Type</th>
+                                        <th>Client</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="sold" class="tab-pane fade in">
+                        <div class="panel-body">
+                           <table style="width:100%" class="table table-bordered" id="order-table-sold">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Type</th>
+                                        <th>Client</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="cancelled" class="tab-pane fade in">
+                        <div class="panel-body">
+                           <table style="width:100%" class="table table-bordered" id="order-table-cancelled">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Type</th>
+                                        <th>Client</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -58,9 +99,17 @@
                                 <button class="btn btn-info btn-lg" type="button" data-toggle="dropdown"><span id="status">Status</span>
                                 <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="statusItem">Pending</a></li>
-                                    <li><a class="statusItem">Sold</a></li>
+                                    <li><a class="statusItem soldStatusItem">Sold</a></li>
                                     <li><a class="statusItem">Cancelled</a></li>
+                                </ul>
+                            </div>
+
+                            <div style="display:inline" class="dropdown">
+                                <button class="btn btn-info btn-lg" type="button" data-toggle="dropdown"><span id="payment_type">Payment Type</span>
+                                <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="pTypeItem">Real</a></li>
+                                    <li><a class="pTypeItem">Virtual</a></li>
                                 </ul>
                             </div>
 
@@ -81,6 +130,7 @@
     {{ HTML::script('assets/scripts/jquery.min.js') }}
     {{ HTML::script('assets/scripts/jquery-ui.min.js') }}
     {{ HTML::script('assets/scripts/datatables.js') }}
+    {{ HTML::script('assets/scripts/validators/orderValidator.js') }}
     {{ HTML::script('assets/scripts/order/order.js') }}
 @endsection
 

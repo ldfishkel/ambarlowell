@@ -28,6 +28,9 @@
                                         <th>Model</th>
                                         <th>Amount</th>
                                         <th>Unit Price</th>
+                                        @if ($order->status == 'Pending')
+                                        <th>Stock</th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody id="itemsBody">
@@ -37,6 +40,15 @@
                                         <td> {{ $item['model'] }} </td> 
                                         <td> {{ $item['amount'] }} </td> 
                                         <td> {{ $item['unit_price'] }} </td> 
+                                        @if ($order->status == 'Pending')
+                                        <td>
+                                            @if ($item['amount'] < $item['stock']) 
+                                                <span class="label label-success">Enough ({{$item['stock']}})</span>
+                                            @else
+                                                <span class="label label-danger">Not Enough ({{$item['stock']}})</span>
+                                            @endif
+                                        </td> 
+                                        @endif
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -44,15 +56,24 @@
                         </div>
 
                         <div class="form-group">
+                            <span style="float:left; font-size:16px;margin-bottom:20px; margin-right:20px" class="label label-info">Status:  {{ $order->status }}</span>
+                            <span style="float:left; font-size:16px;margin-bottom:20px" class="label label-info">Type:  {{ $order->type }}</span>
                             <span style="float:right; font-size:16px" class="label label-info">Total:  ${{ $total }}</span>
                         
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="col-lg-12" style="float:none;margin:auto">Client Info</h3>
+                </div>
 
-                        <div class="panel-heading">
-                            <h3 class="col-lg-12" style="float:none;margin:auto">Client Info</h3>
-                        </div>
+                <div class="panel-body">
+
+                    <div class="form-body">
                         
-                         <div class="form-group">
+                        <div class="form-group">
                             {{ Form::label('name', 'Name', array('id' => '', 'class' => 'col-md-20 control-label')) }}
                             <div class="col-md-20">
                             {{ Form::text('name', $client->name , array('id' => 'name', 'class' => 'form-control')) }}

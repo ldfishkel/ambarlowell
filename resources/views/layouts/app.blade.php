@@ -53,7 +53,6 @@
                             <li style="float:left">
                                 <a style="float:left" href="{{ url('/orders') }}">Orders</a>
                                 <a style="float:left" href="{{ url('/products') }}">Products</a>
-                                <a style="float:left" href="{{ url('/sales') }}">Sales</a>
                                 <a style="float:left" href="{{ url('/costs') }}">Costs</a>
                             </li>
                             <li class="dropdown">
