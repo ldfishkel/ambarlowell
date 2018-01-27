@@ -49,11 +49,14 @@ Route::post('/products/{id}/stock/create', 'StockController@create')->name('stoc
 ///////////////////////////////////////////////////////////////////////////////////////
 
 Route::get('/orders', 		     	  'OrderController@index')->name('orders');
-Route::get('/orders/data', 	     	  'OrderController@data')->name('orders.data');
+Route::get('/orders/data/pending', 	  'OrderController@pending')->name('orders.pending');
+Route::get('/orders/data/sold', 	  'OrderController@sold')->name('orders.sold');
+Route::get('/orders/data/cancelled',  'OrderController@cancelled')->name('orders.cancelled');
 Route::get('/orders/add', 	      	  'OrderController@add')->name('orders.add');
 Route::get('/orders/view/{id}', 	  'OrderController@view')->name('orders.view');
 Route::post('/orders/create',    	  'OrderController@create')->name('order.create');
-Route::put('/orders/update/{id}',     'OrderController@update')->name('orders.update');
+Route::post('/orders/status/{id}',    'OrderController@status')->name('orders.status');
+
 
 ///////////////////////////////////////////////////////////////////////////////////////
 // CLIENTS

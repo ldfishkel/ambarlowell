@@ -15,3 +15,13 @@ function validateOrder(order) {
 
 	return { isValid: true };
 }
+
+function validateStatusChange(data) {
+	if (data.status != 'Cancelled' && data.status != 'Sold')
+		return { isValid: false, message: 'Select different status' };
+
+	if (data.status != 'Cancelled' && data.payment_type != 'Real' && data.payment_type != 'Virtual')
+		return { isValid: false, message: 'Select Payment Type' };
+
+	return { isValid: true };
+}

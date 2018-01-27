@@ -9,9 +9,20 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/jquery-ui.structure.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/jquery-ui.theme.min.css') }}" rel="stylesheet">
 
         <!-- Styles -->
         <style>
+            #background {
+                z-index:1;
+                width: 100%;
+                left:0px;
+                top:0px;
+                position: fixed; 
+            }
             html, body {
                 background-color: #fff;
                 color: #636b6f;
@@ -71,7 +82,6 @@
                     @auth
                         <a href="{{ url('/orders') }}">Orders</a>
                         <a href="{{ url('/products') }}">Products</a>
-                        <a href="{{ url('/sales') }}">Sales</a>
                         <a href="{{ url('/costs') }}">Costs</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
@@ -79,9 +89,18 @@
                 </div>
             @endif
 
-            <div class="content">
-                <img style="width:100%" src="/img/Logo.v4.png">
+
+            <div style="z-index: 2" class="content">
+                <div class="container">
+
+
+                </div>
             </div>
         </div>
+    @section('scripts')
+        {{ HTML::script('assets/scripts/jquery.min.js') }}
+        {{ HTML::script('assets/scripts/jquery-ui.min.js') }}
+    @endsection
     </body>
 </html>
+
