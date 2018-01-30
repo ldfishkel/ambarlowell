@@ -13,7 +13,7 @@ class V130 extends Migration
      */
     public function up()
     {
-         Schema::create('sales', function(Blueprint $table) {
+        Schema::create('sales', function(Blueprint $table) {
             $table->increments('id');
 
             $table->unsignedInteger('order_id');

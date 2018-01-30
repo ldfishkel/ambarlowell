@@ -18,26 +18,26 @@ class ProductController extends Controller
 
     public function index()
     {
-        return view('product');
+        return view('product/product');
     }
 
     public function add()
     {
-        return view('product_add');
+        return view('product/product_add');
     }
 
     public function edit($id)
     {
         $product = Product::find($id);
 
-        return view('product_edit', [ "product" => $product ]);
+        return view('product/product_edit', [ "product" => $product ]);
     }
 
     public function view($id)
     {
         $product = Product::find($id);
 
-        return view('product_view', [ "product" => $product ]);
+        return view('product/product_view', [ "product" => $product ]);
     }
 
     public function data()
@@ -89,7 +89,7 @@ class ProductController extends Controller
 
     }
 
-    public function autocomplete(){
+    public function autocomplete() {
         $term = Input::get('term');
         
         $results = array();

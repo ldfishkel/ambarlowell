@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 ///////////////////////////////////////////////////////////////////////////////////////
 // HOME
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -57,7 +46,6 @@ Route::get('/orders/view/{id}', 	  'OrderController@view')->name('orders.view');
 Route::post('/orders/create',    	  'OrderController@create')->name('order.create');
 Route::post('/orders/status/{id}',    'OrderController@status')->name('orders.status');
 
-
 ///////////////////////////////////////////////////////////////////////////////////////
 // CLIENTS
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -65,13 +53,17 @@ Route::post('/orders/status/{id}',    'OrderController@status')->name('orders.st
 Route::get('/clients/search/autocomplete', 'ClientController@autocomplete')->name("clients.autocomplete");
 
 ///////////////////////////////////////////////////////////////////////////////////////
-// SALES
-///////////////////////////////////////////////////////////////////////////////////////
-
-Route::get('/sales', 'SaleController@index')->name('sales');
-
-///////////////////////////////////////////////////////////////////////////////////////
 // COSTS
 ///////////////////////////////////////////////////////////////////////////////////////
 
-Route::get('/costs', 'CostController@index')->name('costs');
+Route::get('/costs', 				'CostController@index')->name('costs');
+Route::get('/costs/data',    		'CostController@data')->name('costs.data');
+Route::get('/costs/add',    		'CostController@add')->name('costs.add');
+Route::get('/costs/view/{id}', 		'CostController@index')->name('costs.view');
+Route::post('/costs/create',    	'CostController@create')->name('costs.create');
+
+///////////////////////////////////////////////////////////////////////////////////////
+// SUPPLIERS
+///////////////////////////////////////////////////////////////////////////////////////
+
+Route::get('/suppliers/search/autocomplete', 'CostController@autocomplete')->name('suppliers.autocomplete');
