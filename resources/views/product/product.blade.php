@@ -22,10 +22,6 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Model</th>
-                                <th>Fabricated</th>
-                                <th>Cost</th>
-                                <th>Wholesale</th>
-                                <th>Retail</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
