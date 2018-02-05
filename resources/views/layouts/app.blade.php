@@ -48,13 +48,8 @@
                         <!-- Authentication Links -->
                         @guest
                             <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <!--<li><a href="{{ route('register') }}">Register</a></li>-->
                         @else
-                            <li style="float:left">
-                                <a style="float:left" href="{{ url('/orders') }}">Orders</a>
-                                <a style="float:left" href="{{ url('/products') }}">Products</a>
-                                <a style="float:left" href="{{ url('/costs') }}">Costs</a>
-                            </li>
                             <li class="dropdown">
                                 
 
@@ -64,6 +59,9 @@
 
                                 <ul class="dropdown-menu">
                                     <li>
+                                        <a href="{{ url('/orders') }}">Orders</a>
+                                        <a href="{{ url('/products') }}">Products</a>
+                                        <a href="{{ url('/costs') }}">Costs</a>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

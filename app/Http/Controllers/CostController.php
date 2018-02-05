@@ -69,7 +69,7 @@ class CostController extends Controller
         if ($data['type'] == "Real") 
             Balance::create([
                 'amount' => -$cost->amount,
-                'concept' => $cost->concept,
+                'concept' => $cost->concept . " cost",
                 'date' => date('Y-m-d'),
             ]);
         else if ($data['type'] == "Virtual") 

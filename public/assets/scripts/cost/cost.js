@@ -3,13 +3,13 @@ jQuery(document).ready(function() {
     var table = $('#cost-table').DataTable({
         processing: true,
         serverSide: true,
+        pageLength : 25,
         ajax: { url : "/costs/data"},
         columns: [
             { data: 'id', name: 'id' },
+            { data: 'concept', name: 'concept' },
             { data: 'amount', name: 'amount' },
             { data: 'date', name: 'date' },
-            { data: "Action", orderable: false,  
-              defaultContent : '<a style="margin-left:5px" href="javascript:;" class="btn btn-info btn-xs view">View</a>' }
         ]
     });
 

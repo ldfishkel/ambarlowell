@@ -4,9 +4,7 @@
 // HOME
 ///////////////////////////////////////////////////////////////////////////////////////
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'DashboardController@index');
 
 Auth::routes();
 
@@ -14,56 +12,71 @@ Auth::routes();
 // PRODUCTS
 ///////////////////////////////////////////////////////////////////////////////////////
 
-Route::get('/products', 		     		'ProductController@index')->name('products');
-Route::get('/products/data', 	     		'ProductController@data')->name('products.data');
-Route::get('/products/add', 	     		'ProductController@add')->name('products.add');
-Route::get('/products/edit/{id}',    		'ProductController@edit')->name('products.edit');
-Route::get('/products/view/{id}',    		'ProductController@view')->name('products.view');
-Route::post('/products/create',      		'ProductController@create')->name('products.create');
-Route::put('/products/update',       		'ProductController@update')->name('products.update');
-Route::post('/products/images/{id}', 		'ProductController@images')->name('products.images');
-Route::get('/products/search/autocomplete', 'ProductController@autocomplete')->name("products.autocomplete");
+Route::get('/products', 		     		'ProductController@index');
+Route::get('/products/data', 	     		'ProductController@data');
+Route::get('/products/add', 	     		'ProductController@add');
+Route::get('/products/edit/{id}',    		'ProductController@edit');
+Route::get('/products/view/{id}',    		'ProductController@view');
+Route::post('/products/create',      		'ProductController@create');
+Route::put('/products/update',       		'ProductController@update');
+Route::post('/products/images/{id}', 		'ProductController@images');
+Route::get('/products/search/autocomplete', 'ProductController@autocomplete');
 
 ///////////////////////////////////////////////////////////////////////////////////////
 // STOCK
 ///////////////////////////////////////////////////////////////////////////////////////
 
-Route::get('/products/{id}/stock',         'StockController@index')->name('stock.index');
-Route::get('/products/{id}/stock/data',    'StockController@data')->name('stock.data');
-Route::get('/products/{id}/stock/add',     'StockController@add')->name('stock.add');
-Route::post('/products/{id}/stock/create', 'StockController@create')->name('stock.create');
+Route::get('/products/{id}/stock',         'StockController@index');
+Route::get('/products/{id}/stock/data',    'StockController@data');
+Route::get('/products/{id}/stock/add',     'StockController@add');
+Route::post('/products/{id}/stock/create', 'StockController@create');
 
 ///////////////////////////////////////////////////////////////////////////////////////
 // ORDERS
 ///////////////////////////////////////////////////////////////////////////////////////
 
-Route::get('/orders', 		     	  'OrderController@index')->name('orders');
-Route::get('/orders/data/pending', 	  'OrderController@pending')->name('orders.pending');
-Route::get('/orders/data/sold', 	  'OrderController@sold')->name('orders.sold');
-Route::get('/orders/data/cancelled',  'OrderController@cancelled')->name('orders.cancelled');
-Route::get('/orders/add', 	      	  'OrderController@add')->name('orders.add');
-Route::get('/orders/view/{id}', 	  'OrderController@view')->name('orders.view');
-Route::post('/orders/create',    	  'OrderController@create')->name('order.create');
-Route::post('/orders/status/{id}',    'OrderController@status')->name('orders.status');
+Route::get('/orders', 		     	  'OrderController@index');
+Route::get('/orders/data/pending', 	  'OrderController@pending');
+Route::get('/orders/data/sold', 	  'OrderController@sold');
+Route::get('/orders/data/cancelled',  'OrderController@cancelled');
+Route::get('/orders/add', 	      	  'OrderController@add');
+Route::get('/orders/view/{id}', 	  'OrderController@view');
+Route::post('/orders/create',    	  'OrderController@create');
+Route::post('/orders/status/{id}',    'OrderController@status');
 
 ///////////////////////////////////////////////////////////////////////////////////////
 // CLIENTS
 ///////////////////////////////////////////////////////////////////////////////////////
 
-Route::get('/clients/search/autocomplete', 'ClientController@autocomplete')->name("clients.autocomplete");
+Route::get('/clients/search/autocomplete', 'ClientController@autocomplete');
 
 ///////////////////////////////////////////////////////////////////////////////////////
 // COSTS
 ///////////////////////////////////////////////////////////////////////////////////////
 
-Route::get('/costs', 				'CostController@index')->name('costs');
-Route::get('/costs/data',    		'CostController@data')->name('costs.data');
-Route::get('/costs/add',    		'CostController@add')->name('costs.add');
-Route::get('/costs/view/{id}', 		'CostController@index')->name('costs.view');
-Route::post('/costs/create',    	'CostController@create')->name('costs.create');
+Route::get('/costs', 				'CostController@index');
+Route::get('/costs/data',    		'CostController@data');
+Route::get('/costs/add',    		'CostController@add');
+Route::get('/costs/view/{id}', 		'CostController@index');
+Route::post('/costs/create',    	'CostController@create');
 
 ///////////////////////////////////////////////////////////////////////////////////////
 // SUPPLIERS
 ///////////////////////////////////////////////////////////////////////////////////////
 
-Route::get('/suppliers/search/autocomplete', 'CostController@autocomplete')->name('suppliers.autocomplete');
+Route::get('/suppliers/search/autocomplete', 'CostController@autocomplete');
+
+///////////////////////////////////////////////////////////////////////////////////////
+// CREDITS
+///////////////////////////////////////////////////////////////////////////////////////
+
+Route::get('/credits/data', 	'CreditController@data');
+Route::put('/credits/payed/{id}', 'CreditController@payed');
+
+///////////////////////////////////////////////////////////////////////////////////////
+// DEBTS
+///////////////////////////////////////////////////////////////////////////////////////
+
+Route::get('/debts/data', 		'DebtController@data');
+Route::put('/debts/payed/{id}', 'DebtController@payed');
+

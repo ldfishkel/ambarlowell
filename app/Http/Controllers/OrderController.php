@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
+use App\Model\Requested;
 use App\Model\Debt;
 use App\Model\Balance;
 use App\Model\Sale;
@@ -142,13 +143,30 @@ class OrderController extends Controller
             'type'      => $data["type"],
         ]);
 
-        foreach ($items as $item)
-            Item::create([
+        foreach ($items as $item) {     
+            $newItem = Item::create([
                 'order_id'   => $order->id,
                 'product_id' => $item["product_id"],
                 'amount'     => $item["amount"],
                 'unit_price' => $item["unit_price"],
             ]);
+            
+            $currentStock = Stock::where('product_id', $newItem->product_id)->sum('current');
+            
+            if ($currentStock < $newItem->amount) {
+                $amount = $newItem->amount - $currentStock;
+                $requested = Requested::where('product_id', $newItem->product_id)->first(); 
+                
+                if ($requested) {
+                    $requested->amount += $amount;
+                    $requested->save();
+                } else
+                    Requested::create([
+                        'product_id' = $newItem->product_id,
+                        'amount' = $amount
+                    ]);
+            }
+        }
     }
 
     public function status($id)

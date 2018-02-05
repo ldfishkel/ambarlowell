@@ -4,6 +4,7 @@ jQuery(document).ready(function() {
         processing: true,
         serverSide: true,
         ajax: { url : "/products/data"},
+        pageLength : 100,
         columns: [
             { data: 'id', name: 'id' },
             { data: 'model', name: 'model' },

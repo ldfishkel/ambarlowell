@@ -4,16 +4,22 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        @auth
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        @endauth
 
         <title>Laravel</title>
 
         <script type="text/javascript" src="/assets/scripts/jquery.min.js"></script>
         <script type="text/javascript" src="/assets/scripts/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/assets/scripts/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/assets/scripts/datatables.js"></script>
+        <script type="text/javascript" src="/assets/scripts/dashboard.js"></script>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
         <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <!-- Fonts -->
         <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -77,9 +83,13 @@
     </head>
     <body>
 
+        <div class="flex-center">
+            <img style="position: fixed;top: -50px;opacity: 0.1;" src="/img/Logo.v4.png"></img>
+        </div>
+
         <div class="content">
             @if (Route::has('login'))
-            <div class="row" style="height: 65px;">
+            <div class="row" style="height: 85px;">
 
                 <div class="top-right links">
                     @auth
@@ -100,7 +110,7 @@
                     
                         @auth
                             <div class="row">
-
+                                @if ($isAdmin)
                                 <div class="panel panel-default">
                                     <div style="height:70px" class="panel-heading">
                                         <div style="display: inline-block; margin:0px; padding:0px; float:left">
@@ -119,29 +129,104 @@
 
                                         <div id="status" class="tab-pane fade in active">
 
-                                            <div class="panel-body">
-                                                bodt
+                                            <div class="panel-body" style="font-size: 18px;">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <span class="label {{ ($realBalance > 0) ? 'label-success' : 'label-danger' }}"> 
+                                                            Real Balance : $ {{ $realBalance }} 
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <span class="label {{ ($lastMonthProfits < $monthProfits) ? 'label-success' : 'label-danger' }}"> 
+                                                            Month Profits : $ {{ $monthProfits }}
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <span class="label {{ ($lastMonthProfits > 0) ? 'label-success' : 'label-danger' }}"> 
+                                                            Last Month Profits : $ {{ $lastMonthProfits }}
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <span class="label label-info"> 
+                                                            Clients Debts : $ {{ $clientsDebts }}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <span class="label {{ ($virtualBalance > 0) ? 'label-success' : 'label-danger' }}"> 
+                                                            Virtual Balance : $ {{ $virtualBalance }}
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <span class="label label-info"> 
+                                                            Month Costs : $ {{ $monthCosts }}
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <span class="label label-info"> 
+                                                            Last Month Costs : $ {{ $lastMonthCosts }}
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <span class="label label-info"> 
+                                                            Suppliers Debts : $ {{ $suppliersDebts }}
+                                                        </span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div id="creditors" class="tab-pane fade in">
 
                                             <div class="panel-body">
-                                                bodt
+                                                <table style="width:100%" class="table table-bordered" id="creditors-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Id</th>
+                                                            <th>Creditor</th>
+                                                            <th>Amount</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
                                             </div>
                                         </div>
 
                                         <div id="debtors" class="tab-pane fade in">
 
                                             <div class="panel-body">
-                                                bodt
+                                                <table style="width:100%" class="table table-bordered" id="debtors-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Id</th>
+                                                            <th>Debtor</th>
+                                                            <th>Amount</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
                                             </div>
                                         </div>
 
                                         <div id="investments" class="tab-pane fade in">
 
                                             <div class="panel-body">
-                                                bodt
+                                
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        Leo : $0
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        Zama : $0
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        Pela : $0
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <button class="btn btn-primary">Add</button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -149,6 +234,7 @@
                                 </div>
 
                             </div>
+                            @endif
 
                             <div class="row">
 
@@ -160,31 +246,80 @@
                                     </div>
 
                                     <ul class="nav nav-tabs">
-                                        <li class="active"><a data-toggle="tab" href="#requested">Requested</a></li>
+                                        <li class="active"><a data-toggle="tab" href="#stock_status">Status</a></li>
+                                        <li><a data-toggle="tab" href="#requested">Requested</a></li>
                                         <li><a data-toggle="tab" href="#settlement">Settlement</a></li>
                                         <li><a data-toggle="tab" href="#bestseller">Best Seller</a></li>
                                     </ul>
 
                                     <div class="tab-content">
-
-                                        <div id="requested" class="tab-pane fade in active">
+                                        <div id="stock_status" class="tab-pane fade in active">
 
                                             <div class="panel-body">
-                                                bodt
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        {{ $stock["different"] }} Different
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        {{ $stock["settlement"] }} Settlement
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        {{ $stock["requested"] }} Requested
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        {{ $stock["units"] }} Units
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        {{ $stock["withoutStock"] }} Without Stock
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        {{ $stock["entranceThisMonth"] }} Entrance this month
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="requested" class="tab-pane fade in">
+
+                                            <div class="panel-body">
+                                                <table style="width:100%" class="table table-bordered" id="requested-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Model</th>
+                                                            <th>Amount</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
                                             </div>
                                         </div>
 
                                         <div id="settlement" class="tab-pane fade in">
 
                                             <div class="panel-body">
-                                                bodt
+                                                <table style="width:100%" class="table table-bordered" id="settlement-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Model</th>
+                                                            <th>Amount</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
                                             </div>
                                         </div>
 
                                         <div id="bestseller" class="tab-pane fade in">
 
                                             <div class="panel-body">
-                                                bodt
+                                                <table style="width:100%" class="table table-bordered" id="bestseller-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Model</th>
+                                                            <th>Sold</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
                                             </div>
                                         </div>
 
@@ -192,8 +327,6 @@
                                 </div>
 
                             </div>
-                        @else
-                            <img src="/img/Logo.v4.png"></img>
                         @endauth
 
                 @endif
