@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Yajra\Datatables\Datatables;
 use App\Models\Stock;
+use App\Model\Requested;
 use App\Logger\AmbarLogger;
 
 class StockController extends Controller
@@ -41,5 +42,16 @@ class StockController extends Controller
             'settlement'       => $data['settlement'],
             'entrance'         => date('Y-m-d'),
         ]);
+
+        $requested = Requested::where('product_id', $id)->first(); 
+                
+        if ($requested) {
+            if ($requested->amount > $data['amount'])
+                $requested->amount -= $data['amount'];
+            else
+                $requested->amount = 0;
+
+            $requested->save();
+        }
     }
 }

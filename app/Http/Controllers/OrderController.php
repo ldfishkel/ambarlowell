@@ -162,8 +162,8 @@ class OrderController extends Controller
                     $requested->save();
                 } else
                     Requested::create([
-                        'product_id' = $newItem->product_id,
-                        'amount' = $amount
+                        'product_id' => $newItem->product_id,
+                        'amount' => $amount
                     ]);
             }
         }

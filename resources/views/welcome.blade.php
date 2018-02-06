@@ -15,6 +15,7 @@
         <script type="text/javascript" src="/assets/scripts/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/assets/scripts/bootstrap.min.js"></script>
         <script type="text/javascript" src="/assets/scripts/datatables.js"></script>
+        <script type="text/javascript" src="/assets/scripts/validators/dashboardValidator.js"></script>
         <script type="text/javascript" src="/assets/scripts/dashboard.js"></script>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -211,20 +212,16 @@
 
                                         <div id="investments" class="tab-pane fade in">
 
-                                            <div class="panel-body">
+                                            <div class="panel-body" style="font-size: 18px;">
                                 
                                                 <div class="row">
+                                                    @foreach($investments as $investment)
                                                     <div class="col-md-3">
-                                                        Leo : $0
+                                                         <span class="label label-info">{{ $investment->investor }} : $ {{  $investment->amount }}</span>
                                                     </div>
+                                                    @endforeach
                                                     <div class="col-md-3">
-                                                        Zama : $0
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        Pela : $0
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <button class="btn btn-primary">Add</button>
+                                                        <button class="btn btn-primary" data-toggle="modal" data-target="#investmentModal">Add</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -287,8 +284,10 @@
                                                 <table style="width:100%" class="table table-bordered" id="requested-table">
                                                     <thead>
                                                         <tr>
+                                                            <th>Id</th>
                                                             <th>Model</th>
                                                             <th>Amount</th>
+                                                            <th>Action</th>
                                                         </tr>
                                                     </thead>
                                                 </table>
@@ -330,6 +329,51 @@
                         @endauth
 
                 @endif
+            </div>
+
+        <!--__________________________________________________________________________________________________________________-->
+        <!--______________________________________STATUS MODAL________________________________________________________________-->
+        <!--__________________________________________________________________________________________________________________-->
+
+            <div class="modal fade" id="investmentModal" role="dialog">
+                <div class="modal-dialog">
+                
+                  <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Add Investment</h4>
+                        </div>
+                        <div class="modal-body">
+                            
+                        
+                            <div class="row">
+                                <div class="col-md-2">
+                                    
+                                    <div style="display:inline" class="dropdown">
+                                        <button class="btn btn-info" type="button" data-toggle="dropdown"><span id="investor">Investor</span>
+                                        <span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="investorItem">Leo</a></li>
+                                            <li><a class="investorItem">Zama</a></li>
+                                            <li><a class="investorItem">Pela</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    {{ Form::number('amount', '' , array('id' => 'amount', "placeholder" => "amount", 'class' => 'form-control')) }}
+                                </div>
+
+                                <div style="float:right;" class="col-md-2">
+                                    <button id="submitInvestor" class="btn btn-success">Submit</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
