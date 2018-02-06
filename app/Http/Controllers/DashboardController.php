@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Input;
 use Yajra\Datatables\Datatables;
 use App\Models\Product;
 use App\Models\Stock;
+use App\Model\Investment;
 use App\Model\Requested;
 use App\Model\Balance;
 use App\Model\Credit;
@@ -54,6 +55,7 @@ class DashboardController extends Controller
 				"virtualBalance" => $realBalance + $clientsDebts + $suppliersDebts,
 				"lastMonthCosts" => $lastMonthCosts,
 				"lastMonthProfits" => $this->lastMonthProfits($lastMonthCosts),
+				"investments" => $this->investments(),
 				"stock" => $stock 
 			]);
 			
@@ -62,6 +64,21 @@ class DashboardController extends Controller
 				"isAdmin" => $isAdmin,
 				"stock" => $stock 
 			]);
+    }
+
+    public function investment() {
+    	$data = Input::all();
+
+    	Investment::create([
+    		"amount" => $data["amount"],
+    		"investor" => $data["investor"]
+    	]);
+
+    	Balance::create([
+    		"amount" => $data["amount"],
+    		"concept" => "investment",
+    		"date" => date("Y-m-d")
+    	]);
     }
 
     private function realBalance() {
@@ -126,11 +143,35 @@ class DashboardController extends Controller
 
 		$count2 = count(DB::select( DB::raw("select product_id from stock group by product_id having sum(current) = 0") ));
 
-		AmbarLogger::log("without stock", ["count1" => $count1, "count2" => $count2]);
 		return $count1 + $count2;
 	}
 
 	private function entranceThisMonth() {
 		return Stock::whereMonth('entrance', '=', date('m'))->sum("initial");
 	}
+
+	private function investments() {
+		$investments = Investment::selectRaw("investor, sum(amount) as amount")->groupBy("investor")->get();
+
+		return $investments;
+	}
+
+	public function requestedProducts()
+    {
+    	$requested = Requested::where("amount", ">", 0)->get();
+
+    	$response = [];
+    	foreach ($requested as $r) {
+			$product = Product::find($r->product_id);
+
+    		$item = [
+    			"id" => $r->product_id,
+    			"model" => $product->model,
+    			"amount" =>$r->amount
+    		];
+
+    		$response[] = $item;
+    	}
+        return Datatables::of($response)->make(true);
+    }
 }
