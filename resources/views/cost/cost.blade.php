@@ -22,9 +22,9 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
+                                <th>Concept</th>
                                 <th>Amount</th>
                                 <th>Date</th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
                     </table>
