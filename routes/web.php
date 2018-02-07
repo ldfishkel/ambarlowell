@@ -92,4 +92,11 @@ Route::post('/investments/add', 	'DashboardController@investment');
 
 Route::get('/requested/data', 	'DashboardController@requestedProducts');
 
+///////////////////////////////////////////////////////////////////////////////////////
+// TAGS
+///////////////////////////////////////////////////////////////////////////////////////
+
+Route::post('/tags/create', 			'ProductController@createTag');
+Route::get('/tags/search/autocomplete', 'ProductController@autocompleteTag');
+
 

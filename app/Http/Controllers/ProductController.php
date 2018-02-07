@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use Yajra\Datatables\Datatables;
 use App\Models\Product;
+use App\Model\ProductTag;
+use App\Model\Tag;
 use App\Logger\AmbarLogger;
 
 class ProductController extends Controller
@@ -30,14 +32,28 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
-        return view('product/product_edit', [ "product" => $product ]);
+        $tags = [];
+
+        $productTags = ProductTag::where("product_id", $product->id)->get();
+
+        foreach ($productTags as $prodTags) 
+            $tags[] = Tag::find($prodTags->tag_id);
+
+        return view('product/product_edit', [ "product" => $product, "tags" => $tags ]);
     }
 
     public function view($id)
     {
         $product = Product::find($id);
 
-        return view('product/product_view', [ "product" => $product ]);
+        $tags = [];
+
+        $productTags = ProductTag::where("product_id", $product->id)->get();
+
+        foreach ($productTags as $prodTags) 
+            $tags[] = Tag::find($prodTags->tag_id);
+        
+        return view('product/product_view', [ "product" => $product, "tags" => $tags ]);
     }
 
     public function data()
@@ -49,7 +65,7 @@ class ProductController extends Controller
     {
         $data = Input::all();
 
-        Product::create([
+        $product = Product::create([
             'model'       => $data['model'],
             'description' => $data['description'],
             'fabricated'  => (int)$data['fabricated'],
@@ -57,6 +73,15 @@ class ProductController extends Controller
             'wholesale'   => $data['wholesale'],
             'retail'      => $data['retail'],
         ]);
+
+        $tags = $data["tags"];
+
+        foreach ($tags as $tag) {
+            ProductTag::create([
+                "product_id" => $product->id,
+                "tag_id" => $tag["id"]
+            ]);
+        }
     }
 
     public function update()
@@ -73,6 +98,17 @@ class ProductController extends Controller
         $product->retail      = $data['retail'];
 
         $product->save();
+
+        ProductTag::where("product_id", $product->id)->delete();
+
+        $tags = $data["tags"];
+
+        foreach ($tags as $tag) {
+            ProductTag::create([
+                "product_id" => $product->id,
+                "tag_id" => $tag["id"]
+            ]);
+        }
     }
 
     public function images($id) 
@@ -111,5 +147,31 @@ class ProductController extends Controller
         }
         
         return Response::json($results);
+    }
+
+    public function autocompleteTag() {
+        $term = Input::get('term');
+        
+        $results = array();
+        
+        $queries = Tag::where('name', 'LIKE', '%'.$term.'%')->take(5)->get();
+        
+        foreach ($queries as $query) {
+            $results[] = [ 
+               'id' => $query->id, 
+               'value' => $query->name,
+               'name' => $query->name,
+            ];
+        }
+        
+        return Response::json($results);
+    }
+
+    public function createTag() {
+        $data = Input::all();
+
+        Tag::create([
+            "name" => $data["name"]
+        ]);
     }
 }

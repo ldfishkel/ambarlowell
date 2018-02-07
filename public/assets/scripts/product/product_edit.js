@@ -10,6 +10,28 @@ jQuery(document).ready(function() {
             $("#fabricated").val(0);
     });
 
+    var getTags = function() {
+        var tags = [];
+
+        $('#tag-table > tbody  > tr').each(function() {
+            var id, name;
+            
+            $(this).find('td').each (function(e) {
+                switch (e) {
+                    case 0: id = $(this).html(); break;
+                    case 1: name = $(this).html(); break;
+                }
+            });
+            
+            tags.push({ 
+                'id' : id,
+                'name' : name,
+            });
+        });
+
+        return tags;
+    };
+
 
     $("form#data").submit(function(e) {
         e.preventDefault();    
@@ -53,6 +75,7 @@ jQuery(document).ready(function() {
             'cost'       : cost,
             'wholesale'  : wholesale,
             'retail'     : retail,
+            'tags'       : getTags()
         };
 
         var result = validateProduct(data);
@@ -74,6 +97,51 @@ jQuery(document).ready(function() {
                 window.location.href = "/products"; 
             }
         });
+    });
+
+    $("#create_tag").on("click", function() {
+        var data = { "name" : $("#q").val() };
+
+        var result = validateTag(data);
+
+        if (!result.isValid) {
+            alert(result.message);
+            return false;
+        }
+
+        $.ajax({
+            'url'     : '/tags/create',
+            'type'    : 'POST',
+            'data'    : data,
+            'headers' : { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            'success' : function(response) {
+                alert("Success!");
+                $("#q").val("");
+            }
+        });
+       
+    });
+
+    $("#tagsBody").on("click", ".remove", function () {
+        var id = $(this).parent().siblings(":first").text();
+        $("#row" + id).remove();
+    });
+
+    $('#q').autocomplete({
+        source    : '/tags/search/autocomplete',
+        minlenght : 1,
+        autoFocus : true,
+        select    : function(e, ui) {
+            $("#tagsBody").append("" +
+                "<tr id='row" + ui.item.id + "'>" +
+                    "<td>" + ui.item.id + "</td>" +
+                    "<td>" + ui.item.name + "</td>" +
+                    "<td><a class='btn btn-danger btn-xs remove'>Remove</a></td>" +
+                "</tr>");
+            $("#q").val("");
+            $("#q").html("");
+            $("#q").text("");
+        }
     });
 
 });

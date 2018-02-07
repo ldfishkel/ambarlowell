@@ -17,3 +17,11 @@ function validateProduct(product) {
 
 	return { isValid: true };
 }
+
+function validateTag(tag) {
+
+	if (tag.name.length == 0)
+		return { isValid: false, message: 'Nombre de Tag inválido' };
+
+	return { isValid: true };
+}

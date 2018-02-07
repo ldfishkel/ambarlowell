@@ -67,6 +67,26 @@
                                     </div>
                                 </div>
 
+                                <div class="row">
+                                
+                                   <table style="width:100%" class="table table-bordered" id="tag-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Tag</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tagsBody">
+                                            @foreach($tags as $tag)
+                                            <tr>
+                                                <td>{{ $tag->id }}</td>
+                                                <td>{{ $tag->name }}</td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+
                             </div>
 
                         </div>
