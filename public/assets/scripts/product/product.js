@@ -11,8 +11,14 @@ jQuery(document).ready(function() {
             { data: "Action", orderable: false,  
               defaultContent : '<a href="javascript:;" class="btn btn-warning btn-xs edit">Edit</a>' + 
                                '<a style="margin-left:5px" href="javascript:;" class="btn btn-info btn-xs view">View</a>' +
-                               '<a style="margin-left:5px" href="javascript:;" class="btn btn-danger btn-xs stock">Stock</a>' }
+                               '<a style="margin-left:5px" href="javascript:;" class="btn btn-danger btn-xs stock">Stock</a>' +
+                               '<a style="margin-left:5px" href="javascript:;" class="btn btn-danger btn-xs image">Images</a>' }
         ]
+    });
+
+    table.on('click', '.image', function (e) {
+        var id = $(this).parent().siblings(":first").text();
+        window.location.href = "/products/images/" + id; 
     });
 
     table.on('click', '.edit', function (e) {
