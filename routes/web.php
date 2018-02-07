@@ -17,6 +17,7 @@ Route::get('/products/data', 	     		'ProductController@data');
 Route::get('/products/add', 	     		'ProductController@add');
 Route::get('/products/edit/{id}',    		'ProductController@edit');
 Route::get('/products/view/{id}',    		'ProductController@view');
+Route::get('/products/images/{id}',    		'ProductController@viewImages');
 Route::post('/products/create',      		'ProductController@create');
 Route::put('/products/update',       		'ProductController@update');
 Route::post('/products/images/{id}', 		'ProductController@images');

@@ -56,6 +56,13 @@ class ProductController extends Controller
         return view('product/product_view', [ "product" => $product, "tags" => $tags ]);
     }
 
+    public function viewImages($id) 
+    {
+        $product = Product::find($id);
+
+        return view('product/product_images', [ "product" => $product ]);
+    }
+
     public function data()
     {
         return Datatables::of(Product::query())->make(true);
