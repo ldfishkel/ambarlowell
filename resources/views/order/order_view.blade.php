@@ -29,6 +29,7 @@
                                         <th>Amount</th>
                                         <th>Unit Price</th>
                                         @if ($order->status == 'Pending')
+                                        <th>Comment</th>
                                         <th>Stock</th>
                                         @endif
                                     </tr>
@@ -41,6 +42,7 @@
                                         <td> {{ $item['amount'] }} </td> 
                                         <td> {{ $item['unit_price'] }} </td> 
                                         @if ($order->status == 'Pending')
+                                        <td> {{ $item['comment'] }} </td> 
                                         <td>
                                             @if ($item['amount'] < $item['stock']) 
                                                 <span class="label label-success">Enough ({{$item['stock']}})</span>

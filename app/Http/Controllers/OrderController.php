@@ -104,6 +104,7 @@ class OrderController extends Controller
                 "model" => $product->model,
                 "amount" => $item->amount,
                 "unit_price" => $item->unit_price,
+                "comment" => $item->comment,
                 "stock" => Stock::where('product_id', $product->id)->sum('current')
             ];
             $total += $item->amount * $item->unit_price;
@@ -149,6 +150,7 @@ class OrderController extends Controller
                 'product_id' => $item["product_id"],
                 'amount'     => $item["amount"],
                 'unit_price' => $item["unit_price"],
+                'comment'    => $item["comment"],
             ]);
             
             $currentStock = Stock::where('product_id', $newItem->product_id)->sum('current');
