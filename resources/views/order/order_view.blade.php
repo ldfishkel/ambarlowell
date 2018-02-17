@@ -37,7 +37,7 @@
                                 @foreach($items as $item)
                                     <tr>  
                                         <td> {{ $item['product_id'] }} </td> 
-                                        <td> {{ $item['model'] }} </td> 
+                                        <td> <span class="btn btn-xs btn-success model"> {{ $item['model'] }} </span> </td> 
                                         <td> {{ $item['amount'] }} </td> 
                                         <td> {{ $item['unit_price'] }} </td> 
                                         @if ($order->status == 'Pending')
@@ -124,5 +124,6 @@
     {{ HTML::script('assets/scripts/jquery.min.js') }}
     {{ HTML::script('assets/scripts/jquery-ui.min.js') }}
     {{ HTML::script('assets/scripts/datatables.js') }}
+    {{ HTML::script('assets/scripts/order/order_view.js') }}
 @endsection
 
