@@ -12,6 +12,7 @@ class Item extends \Eloquent
         'order_id', 
         'amount',
         'unit_price',
+        'comment',
     ];
 
     public $timestamps = false;

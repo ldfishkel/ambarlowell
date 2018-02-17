@@ -9,6 +9,7 @@ jQuery(document).ready(function() {
         $("#retail").val("");
         $("#amount").val("");
         $("#stock").val("");
+        $("#comment").val("");
         $("#unit_price").val("");
         $("#unit_price").prop("disabled", true);
         $("#amount").prop("disabled", true);
@@ -20,20 +21,23 @@ jQuery(document).ready(function() {
         var items = [];
 
         $('#product-table > tbody  > tr').each(function() {
-            var product_id, amount, unit_price;
+            var product_id, amount, unit_price, comment;
             
             $(this).find('td').each (function(e) {
                 switch (e) {
                     case 0: product_id = $(this).html(); break;
                     case 2: amount     = $(this).html(); break;
                     case 3: unit_price = $(this).html(); break;
+                    case 4: comment    = $(this).html(); break;
                 }
             });
             
             items.push({ 
                 'product_id' : product_id,
                 'amount' : amount,
-                'unit_price' : unit_price
+                'unit_price' : unit_price,
+                'comment' : comment,
+
             });
         });
 
@@ -116,6 +120,7 @@ jQuery(document).ready(function() {
                     "<td>" + $("#model").val() + "</td>" +
                     "<td>" + $("#amount").val() + "</td>" +
                     "<td>" + $("#unit_price").val() + "</td>" +
+                    "<td>" + $("#comment").val() + "</td>" +
                     "<td><a class='btn btn-danger btn-xs remove'>Remove</a></td>" +
                 "</tr>");
         

@@ -124,7 +124,7 @@
         <div class="modal-dialog">
         
           <!-- Modal content-->
-            <div class="modal-content">
+            <div class="modal-content" style="width: fit-content;">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Items</h4>
@@ -186,6 +186,14 @@
                         </div>
 
                     </div>
+
+                    <div style="margin-top:10px"  class="form-group">
+                        {{ Form::label('comment', 'Comment', array('id' => '', 'class' => 'col-md-3 control-label')) }}
+                        <div class="col-md-20">
+                        {{ Form::text('comment', '' , array('id' => 'comment', 'class' => 'form-control')) }}
+                        </div>
+
+                    </div>
                     
                     <div style="margin-top:10px" class="col-md-20">
                         <a id="add_item" class="disabled btn btn-success">Add item</a>
@@ -202,6 +210,7 @@
                                     <th>Model</th>
                                     <th>Amount</th>
                                     <th>Unit Price</th>
+                                    <th>Comment</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
