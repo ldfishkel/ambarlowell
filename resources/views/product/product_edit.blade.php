@@ -30,7 +30,7 @@
                                     {{ Form::label('model', 'Model', array('class' => 'col-md-3 control-label')) }}
                                     <div class="col-md-4">
                                         {{ Form::hidden('id', $product->id, array('id' => 'id', 'class' => 'form-control')) }}
-                                        {{ Form::text('model', $product->model, array('class' => 'form-control')) }}
+                                        {{ Form::text('model', $product->model, array('disabled' => 'true', 'class' => 'form-control')) }}
                                         <span class="help-block hidden message"></span>
                                     </div>
                                 </div>

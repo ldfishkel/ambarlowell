@@ -135,6 +135,8 @@
                     {{ Form::text('p', '', ['id' =>  'p', 'placeholder' =>  'search product'])}}
                     {{ Form::submit('Search', array('class' => 'button expand')) }}
 
+                    <div id="imgHolder" style="float:right"></div>
+
                 </div>
 
 

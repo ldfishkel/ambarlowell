@@ -73,7 +73,7 @@ class ProductController extends Controller
         $data = Input::all();
 
         $product = Product::create([
-            'model'       => $data['model'],
+            'model'       => $this->lastModel($data['type']),
             'description' => $data['description'],
             'fabricated'  => (int)$data['fabricated'],
             'cost'        => $data['cost'],
@@ -94,6 +94,19 @@ class ProductController extends Controller
             } 
         }
 
+    }
+
+    private function lastModel($type) 
+    {
+        $last = Product::where('model', 'like', $type.'%')->orderBy('id', 'desc')->first();
+
+        if (!$last) return $type . '-0001';
+
+        $splitted = explode("-", $last->model);
+        $number = (int)$splitted[1];
+        $model = $type . "-" . sprintf('%04d', ($number + 1));
+
+        return $model;
     }
 
     public function update()
@@ -154,6 +167,7 @@ class ProductController extends Controller
                'description' => $query->description,
                'wholesale' => $query->wholesale,
                'retail' => $query->retail,
+               'image' => $query->image,
                'stock' => $query->totalStock()
             ];
         }

@@ -17,10 +17,10 @@
                 </div>
 
                  <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#pf">Fabricated</a></li>
-                    <li><a data-toggle="tab" href="#pi">Imported</a></li>
-                    <li><a data-toggle="tab" href="#ac">Steel</a></li>
-                    <li><a data-toggle="tab" href="#ab">White Steel</a></li>
+                    <li class="active"><a data-toggle="tab" href="#pf">Fabricated (PF)</a></li>
+                    <li><a data-toggle="tab" href="#pi">Imported (PI)</a></li>
+                    <li><a data-toggle="tab" href="#ac">Steel (AC)</a></li>
+                    <li><a data-toggle="tab" href="#ab">White Steel (AB)</a></li>
                 </ul>
 
                 <div class="tab-content">
