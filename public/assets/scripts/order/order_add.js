@@ -15,6 +15,7 @@ jQuery(document).ready(function() {
         $("#amount").prop("disabled", true);
         $("#add_item").addClass("disabled");
         $("#clean_item").addClass("disabled");
+        $("#imgHolder").html("");
     }
 
     var items_order = function() {
@@ -95,6 +96,10 @@ jQuery(document).ready(function() {
         $("#amount").prop("disabled", false);
         $("#add_item").removeClass("disabled");
         $("#clean_item").removeClass("disabled");
+        if (ui.item.image && ui.item.image != '')
+            $("#imgHolder").html('<img width="255px" src="/assets/img/'+ ui.item.image +'"">');
+        else
+            $("#imgHolder").html('<img width="100px" class="image" src="https://www.google.com.ar/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">');
       }
     });
     

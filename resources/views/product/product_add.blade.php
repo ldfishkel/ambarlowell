@@ -25,10 +25,25 @@
                             <div class="col-md-6">
                                 
                                 <div class="form-group">
-                                    {{ Form::label('model', 'Model', array('class' => 'col-md-3 control-label')) }}
+
+
+                                    {{ Form::label('type', 'Type', array('class' => 'col-md-3 control-label')) }}
+                                    
+
+
                                     <div class="col-md-4">
-                                        {{ Form::text('model', '', array('class' => 'form-control')) }}
-                                        <span class="help-block hidden message"></span>
+                                    
+                                        <div style="display:inline" class="dropdown">
+                                            <button class="btn btn-info btn-lg" type="button" data-toggle="dropdown"><span id="type">Type</span>
+                                            <span class="caret"></span></button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="typeItem">PF</a></li>
+                                                <li><a class="typeItem">PI</a></li>
+                                                <li><a class="typeItem">AC</a></li>
+                                                <li><a class="typeItem">AB</a></li>
+                                            </ul>
+                                        </div>
+
                                     </div>
                                 </div>
 

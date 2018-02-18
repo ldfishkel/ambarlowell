@@ -52,7 +52,7 @@
                                             @if (!$item['comment'] || $item['comment'] == '') 
                                                 <span class="btn btn-xs btn-success addComment" data-toggle="modal" data-target="#addCommentModal">Add Comment</span>
                                             @else
-                                                {{ $item['comment'] }} 
+                                                {{ $item['comment']  }}  <span style="margin-left : 5px" class="btn btn-xs btn-success addComment" data-toggle="modal" data-target="#addCommentModal">Add Comment</span>
                                             @endif
                                         </td> 
                                        

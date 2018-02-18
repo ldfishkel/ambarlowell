@@ -7,6 +7,10 @@ jQuery(document).ready(function() {
             $("#fabricated").val(0);
     });
 
+    $(".typeItem").on("click", function() {
+        $("#type").html($(this).html());
+    });
+
     var getTags = function() {
         var tags = [];
 
@@ -39,7 +43,8 @@ jQuery(document).ready(function() {
         var retail      = $("#retail").val();
 
         var data = {
-            'model'      : model,
+            //'model'      : model,
+            'type'       : $("#type").html(),
             'description': description,
             'fabricated' : fabricated,
             'cost'       : cost,

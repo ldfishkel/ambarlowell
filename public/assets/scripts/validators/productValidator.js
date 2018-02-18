@@ -1,7 +1,7 @@
 function validateProduct(product) {
 
-	if (product.model.length == 0)
-		return { isValid: false, message: 'Nombre de modelo inválido' };
+	if (product.type != 'PF' && product.type != 'PI' && product.type != 'AC' && product.type != 'AB')
+		return { isValid: false, message: 'Seleccionar tipo válido' };
 
 	if (product.description.length == 0)
 		return { isValid: false, message: 'Descripción inválida' };
