@@ -63,9 +63,9 @@ class ProductController extends Controller
         return view('product/product_images', [ "product" => $product ]);
     }
 
-    public function data()
+    public function data($type)
     {
-        return Datatables::of(Product::query())->make(true);
+        return Datatables::of(Product::where('model', 'like', $type.'%'))->make(true);
     }
 
     public function create()

@@ -16,16 +16,69 @@
                     </div>
                 </div>
 
-                <div class="panel-body">
-                   <table style="width:100%" class="table table-bordered" id="product-table">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Model</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                    </table>
+                 <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#pf">Fabricated</a></li>
+                    <li><a data-toggle="tab" href="#pi">Imported</a></li>
+                    <li><a data-toggle="tab" href="#ac">Steel</a></li>
+                    <li><a data-toggle="tab" href="#ab">White Steel</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="pf" class="tab-pane fade in active">
+                        <div class="panel-body">
+                           <table style="width:100%" class="table table-bordered" id="product-table">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Model</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="pi" class="tab-pane fade in">
+                        <div class="panel-body">
+                           <table style="width:100%" class="table table-bordered" id="product-table-pi">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Model</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="ac" class="tab-pane fade in">
+                        <div class="panel-body">
+                           <table style="width:100%" class="table table-bordered" id="product-table-ac">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Model</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="ab" class="tab-pane fade in">
+                        <div class="panel-body">
+                           <table style="width:100%" class="table table-bordered" id="product-table-ab">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Model</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -13,7 +13,7 @@ Auth::routes();
 ///////////////////////////////////////////////////////////////////////////////////////
 
 Route::get('/products', 		     		'ProductController@index');
-Route::get('/products/data', 	     		'ProductController@data');
+Route::get('/products/data/{type}', 	    'ProductController@data');
 Route::get('/products/add', 	     		'ProductController@add');
 Route::get('/products/edit/{id}',    		'ProductController@edit');
 Route::get('/products/view/{id}',    		'ProductController@view');
