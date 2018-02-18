@@ -7,12 +7,18 @@ jQuery(document).ready(function() {
         pageLength : 100,
         columns: [
             { data: 'id', name: 'id' },
-            { data: 'model', name: 'model' },
+            { data: 'model', name: 'model', render: function ( data, type, full, meta ) { return '<span class="btn btn-xs btn-default">'+ data +'</span>'; } },
+            { data: 'image', name: 'image',
+            render: function ( data, type, full, meta ) { 
+                var img = '<img width="255px" class="image" src="https://www.google.com.ar/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">';
+                if (data && data != '') 
+                    img = '<img width="255px" src="/assets/img/'+ data +'"">';
+                
+                return img;
+            } },
             { data: "Action", orderable: false,  
               defaultContent : '<a href="javascript:;" class="btn btn-warning btn-xs edit">Edit</a>' + 
-                               '<a style="margin-left:5px" href="javascript:;" class="btn btn-info btn-xs view">View</a>' +
-                               '<a style="margin-left:5px" href="javascript:;" class="btn btn-danger btn-xs stock">Stock</a>' +
-                               '<a style="margin-left:5px" href="javascript:;" class="btn btn-danger btn-xs image">Images</a>' }
+                               '<a style="margin-left:5px" href="javascript:;" class="btn btn-danger btn-xs stock">Stock</a>' }
         ]
     });
 
@@ -43,12 +49,18 @@ jQuery(document).ready(function() {
         pageLength : 100,
         columns: [
             { data: 'id', name: 'id' },
-            { data: 'model', name: 'model' },
+            { data: 'model', name: 'model', render: function ( data, type, full, meta ) { return '<span class="btn btn-xs btn-default view">'+ data +'</span>'; } },
+            { data: 'image', name: 'image',
+            render: function ( data, type, full, meta ) { 
+                var img = '<img width="255px" class="image" src="https://www.google.com.ar/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">';
+                if (data && data != '') 
+                    img = '<img width="255px" src="/assets/img/'+ data +'"">';
+                
+                return img;
+            } },
             { data: "Action", orderable: false,  
               defaultContent : '<a href="javascript:;" class="btn btn-warning btn-xs edit">Edit</a>' + 
-                               '<a style="margin-left:5px" href="javascript:;" class="btn btn-info btn-xs view">View</a>' +
-                               '<a style="margin-left:5px" href="javascript:;" class="btn btn-danger btn-xs stock">Stock</a>' +
-                               '<a style="margin-left:5px" href="javascript:;" class="btn btn-danger btn-xs image">Images</a>' }
+                               '<a style="margin-left:5px" href="javascript:;" class="btn btn-danger btn-xs stock">Stock</a>' }
         ]
     });
 
@@ -79,12 +91,18 @@ jQuery(document).ready(function() {
         pageLength : 100,
         columns: [
             { data: 'id', name: 'id' },
-            { data: 'model', name: 'model' },
+            { data: 'model', name: 'model', render: function ( data, type, full, meta ) { return '<span class="btn btn-xs btn-default view">'+ data +'</span>'; } },
+            { data: 'image', name: 'image',
+            render: function ( data, type, full, meta ) { 
+                var img = '<img width="255px" class="image" src="https://www.google.com.ar/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">';
+                if (data && data != '') 
+                    img = '<img width="255px" src="/assets/img/'+ data +'"">';
+                
+                return img;
+            } },
             { data: "Action", orderable: false,  
               defaultContent : '<a href="javascript:;" class="btn btn-warning btn-xs edit">Edit</a>' + 
-                               '<a style="margin-left:5px" href="javascript:;" class="btn btn-info btn-xs view">View</a>' +
-                               '<a style="margin-left:5px" href="javascript:;" class="btn btn-danger btn-xs stock">Stock</a>' +
-                               '<a style="margin-left:5px" href="javascript:;" class="btn btn-danger btn-xs image">Images</a>' }
+                               '<a style="margin-left:5px" href="javascript:;" class="btn btn-danger btn-xs stock">Stock</a>' }
         ]
     });
 
@@ -115,12 +133,18 @@ jQuery(document).ready(function() {
         pageLength : 100,
         columns: [
             { data: 'id', name: 'id' },
-            { data: 'model', name: 'model' },
+            { data: 'model', name: 'model', render: function ( data, type, full, meta ) { return '<span class="btn btn-xs btn-default view">'+ data +'</span>'; } },
+            { data: 'image', name: 'image',
+            render: function ( data, type, full, meta ) { 
+                var img = '<img width="255px" class="image" src="https://www.google.com.ar/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">';
+                if (data && data != '') 
+                    img = '<img width="255px" src="/assets/img/'+ data +'"">';
+                
+                return img;
+            } },
             { data: "Action", orderable: false,  
               defaultContent : '<a href="javascript:;" class="btn btn-warning btn-xs edit">Edit</a>' + 
-                               '<a style="margin-left:5px" href="javascript:;" class="btn btn-info btn-xs view">View</a>' +
-                               '<a style="margin-left:5px" href="javascript:;" class="btn btn-danger btn-xs stock">Stock</a>' +
-                               '<a style="margin-left:5px" href="javascript:;" class="btn btn-danger btn-xs image">Images</a>' }
+                               '<a style="margin-left:5px" href="javascript:;" class="btn btn-danger btn-xs stock">Stock</a>' }
         ]
     });
 
