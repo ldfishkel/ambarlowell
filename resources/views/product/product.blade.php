@@ -31,6 +31,7 @@
                                     <tr>
                                         <th>Id</th>
                                         <th>Model</th>
+                                        <th>Image</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -45,6 +46,7 @@
                                     <tr>
                                         <th>Id</th>
                                         <th>Model</th>
+                                        <th>Image</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -59,6 +61,7 @@
                                     <tr>
                                         <th>Id</th>
                                         <th>Model</th>
+                                        <th>Image</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -73,6 +76,7 @@
                                     <tr>
                                         <th>Id</th>
                                         <th>Model</th>
+                                        <th>Image</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>

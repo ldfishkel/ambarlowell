@@ -14,6 +14,7 @@ class Product extends \Eloquent
         'cost',
         'wholesale',
         'retail',
+        'image',
     ];
 
     public $timestamps = false;

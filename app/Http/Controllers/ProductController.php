@@ -123,12 +123,12 @@ class ProductController extends Controller
         $data = Input::all();
 
         foreach ($data["photos"] as $image) {
-            $imageName = $image->hashName();
-
-            if(!\Storage::disk('public_uploads')->put($id, $image)) {
-                AmbarLogger::log("failed to save " . $imageName);
-            }
+            $path = \Storage::disk('public_uploads')->put($id, $image);
         }
+
+        $product = Product::where("model", $id)->first();
+        $product->image = $path;
+        $product->save();
 
     }
 
