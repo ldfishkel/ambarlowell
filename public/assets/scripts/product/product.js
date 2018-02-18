@@ -7,7 +7,7 @@ jQuery(document).ready(function() {
         pageLength : 100,
         columns: [
             { data: 'id', name: 'id' },
-            { data: 'model', name: 'model', render: function ( data, type, full, meta ) { return '<span class="btn btn-xs btn-default">'+ data +'</span>'; } },
+            { data: 'model', name: 'model', render: function ( data, type, full, meta ) { return '<span class="btn btn-xs btn-default view">'+ data +'</span>'; } },
             { data: 'image', name: 'image',
             render: function ( data, type, full, meta ) { 
                 var img = '<img width="255px" class="image" src="https://www.google.com.ar/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">';
