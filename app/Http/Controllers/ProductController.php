@@ -79,16 +79,21 @@ class ProductController extends Controller
             'cost'        => $data['cost'],
             'wholesale'   => $data['wholesale'],
             'retail'      => $data['retail'],
+            'image'       => ''
         ]);
 
-        $tags = $data["tags"];
+        if (isset($data["tags"])) {
 
-        foreach ($tags as $tag) {
-            ProductTag::create([
-                "product_id" => $product->id,
-                "tag_id" => $tag["id"]
-            ]);
+            $tags = $data["tags"];
+            
+            foreach ($tags as $tag) {
+                ProductTag::create([
+                    "product_id" => $product->id,
+                    "tag_id" => $tag["id"]
+                ]);
+            } 
         }
+
     }
 
     public function update()
