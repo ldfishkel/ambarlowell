@@ -28,10 +28,14 @@
                                         <th>Model</th>
                                         <th>Amount</th>
                                         <th>Unit Price</th>
+
                                         @if ($order->status == 'Pending')
+
                                         <th>Comment</th>
                                         <th>Stock</th>
+
                                         @endif
+
                                     </tr>
                                 </thead>
                                 <tbody id="itemsBody">
@@ -41,8 +45,17 @@
                                         <td> <span class="btn btn-xs btn-success model"> {{ $item['model'] }} </span> </td> 
                                         <td> {{ $item['amount'] }} </td> 
                                         <td> {{ $item['unit_price'] }} </td> 
+                                       
                                         @if ($order->status == 'Pending')
-                                        <td> {{ $item['comment'] }} </td> 
+                                       
+                                        <td> 
+                                            @if (!$item['comment'] || $item['comment'] == '') 
+                                                <span class="btn btn-xs btn-success addComment" data-toggle="modal" data-target="#addCommentModal">Add Comment</span>
+                                            @else
+                                                {{ $item['comment'] }} 
+                                            @endif
+                                        </td> 
+                                       
                                         <td>
                                             @if ($item['amount'] < $item['stock']) 
                                                 <span class="label label-success">Enough ({{$item['stock']}})</span>
@@ -50,6 +63,7 @@
                                                 <span class="label label-danger">Not Enough ({{$item['stock']}})</span>
                                             @endif
                                         </td> 
+                                       
                                         @endif
                                     </tr>
                                 @endforeach
@@ -114,6 +128,45 @@
                         </div>
 
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!--__________________________________________________________________________________________________________________-->
+<!--______________________________________MODAL ITEMS_________________________________________________________________-->
+<!--__________________________________________________________________________________________________________________-->
+
+    <div class="modal fade" id="addCommentModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+            <div class="modal-content" style="width: fit-content;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Items</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+                            
+                    {{ Form::hidden('product_id', '' , array('id' => 'product_id', 'class' => 'form-control')) }}
+
+                    <div style="margin-top:10px"  class="form-group">
+                        {{ Form::label('comment', 'Comment', array('id' => '', 'class' => 'col-md-3 control-label')) }}
+                        <div class="col-md-20">
+                        {{ Form::text('comment', '' , array('id' => 'comment', 'class' => 'form-control')) }}
+                        </div>
+
+                    </div>
+                    
+                    <div style="margin-top:10px" class="col-md-20">
+                        <a id="add_comment" class="btn btn-success">Submit</a>
+                    </div>
+                    
+                    </div>
+
                 </div>
             </div>
         </div>

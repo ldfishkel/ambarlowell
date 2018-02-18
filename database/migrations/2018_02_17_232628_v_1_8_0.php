@@ -14,6 +14,7 @@ class V180 extends Migration
     public function up()
     {
         Schema::table('order_item', function($table) {
+            $table->increments('id');
             $table->string('comment');
         });
     }

@@ -171,6 +171,16 @@ class OrderController extends Controller
         }
     }
 
+    public function comment() {
+        $data = Input::all();
+        
+        $item = Item::where("order_id", $data["order_id"])->where("product_id", $data["product_id"])->first();
+
+        $item->comment = $data["comment"];
+
+        $item->save();
+    }
+
     public function status($id)
     {
         $data = Input::all();
