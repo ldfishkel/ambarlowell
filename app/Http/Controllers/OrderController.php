@@ -102,6 +102,7 @@ class OrderController extends Controller
             $data = [
                 "product_id" => $product->id,
                 "model" => $product->model,
+                "image" => $product->image,
                 "amount" => $item->amount,
                 "unit_price" => $item->unit_price,
                 "comment" => $item->comment,
