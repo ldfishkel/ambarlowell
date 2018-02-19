@@ -9,7 +9,7 @@
         z-index: 1;
         position: absolute;
         margin: auto;
-        top: 200px;
+        top: 400px;
     }
 </style>
 @section('content')
