@@ -1,9 +1,15 @@
 jQuery(document).ready(function() {
    
-   $(".model").on("click", function(e){
-        var id = $(this).parent().siblings(":first").text();
-        window.location.href = "/products/view/" + id; 
-   });
+   $(".productRow").hover(
+    function(e){
+        $(".imageHolder").html("<img width='255px' src='/assets/img/" + $(this).attr('id') + "' >");
+        $(".imageHolder").css("border", "solid black 2px");
+    },
+    function(e){
+        $(".imageHolder").html("");
+        $(".imageHolder").css("border", "");
+    }
+   );
 
    $(".addComment").on("click", function(e) {
         var id = $(this).parent().siblings(":first").text();

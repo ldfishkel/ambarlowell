@@ -5,9 +5,16 @@
     .ui-widget-content {
     z-index: 10000000000 !important;
     }
+    .top-right {
+        z-index: 1;
+        position: absolute;
+        margin: auto;
+        top: 200px;
+    }
 </style>
 @section('content')
 <div class="container">
+    <div class="imageHolder top-right"></div>
     
     <div class="row">
         <div class="col-md-12">
@@ -40,9 +47,9 @@
                                 </thead>
                                 <tbody id="itemsBody">
                                 @foreach($items as $item)
-                                    <tr>  
+                                    <tr id="{{$item['image']}}" class="productRow">  
                                         <td> {{ $item['product_id'] }} </td> 
-                                        <td> <span class="btn btn-xs btn-success model"> {{ $item['model'] }} </span> </td> 
+                                        <td> <a href="{{ '/products/view/' . $item['product_id'] }}" class="btn btn-xs btn-success model"> {{ $item['model'] }} </a> </td> 
                                         <td> {{ $item['amount'] }} </td> 
                                         <td> {{ $item['unit_price'] }} </td> 
                                        
@@ -58,9 +65,9 @@
                                        
                                         <td>
                                             @if ($item['amount'] < $item['stock']) 
-                                                <span class="label label-success">Enough ({{$item['stock']}})</span>
+                                                <a href="{{ '/products/' . $item['product_id'] . '/stock' }}" class="label label-success">Enough ({{$item['stock']}})</a>
                                             @else
-                                                <span class="label label-danger">Not Enough ({{$item['stock']}})</span>
+                                                <a href="{{ '/products/' . $item['product_id'] . '/stock' }}" class="label label-danger">Not Enough ({{$item['stock']}})</a>
                                             @endif
                                         </td> 
                                        
