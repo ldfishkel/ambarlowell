@@ -45,6 +45,7 @@ Route::get('/orders/view/{id}', 	  'OrderController@view');
 Route::post('/orders/create',    	  'OrderController@create');
 Route::post('/orders/status/{id}',    'OrderController@status');
 Route::put('/orders/comment',         'OrderController@comment');
+Route::put('/orders/fabricator',      'OrderController@fabricator');
 
 ///////////////////////////////////////////////////////////////////////////////////////
 // CLIENTS

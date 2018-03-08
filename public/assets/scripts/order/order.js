@@ -3,6 +3,7 @@ jQuery(document).ready(function() {
     var table = $('#order-table-pending').DataTable({
         processing: true,
         serverSide: true,
+        pageLength : 100,
         ajax: { url : "/orders/data/pending"},
         columns: [
             { data: 'id', name: 'id' },
@@ -19,9 +20,41 @@ jQuery(document).ready(function() {
             { data: 'date', name: 'date' },
             { data: "Action", orderable: false,
             render: function ( data, type, full, meta ) { 
+                var fabricator = full.fabricator;
+                if (fabricator == null)
+                    fabricator = 'Fabricator';
+
                 var buttons = '<a  href="javascript:;" class="btn btn-info btn-xs view">View</a>'
+                            + '<div style="margin-left:5px; display:inline" class="dropdown">'
+                            +        '<button class="btn btn-danger btn-xs" type="button" data-toggle="dropdown"><span id="fabricator_' + full.id + '">' + fabricator + '</span>'
+                            +        '<span class="caret"></span></button>'
+                            +        '<ul class="dropdown-menu">'
+                            +            '<li><a class="fabricatorItem_' + full.id + '">Pela</a></li>'
+                            +            '<li><a class="fabricatorItem_' + full.id + '">Felix</a></li>'
+                            +        '</ul>'
+                            +    '</div>'
                             + '<button type="button" style="margin-left:5px" class="btn btn-success btn-xs status" data-toggle="modal" data-target="#statusModal">Status</button>' ; 
                 
+                $(".fabricatorItem_" + full.id ).on("click", function() {
+                    $("#fabricator_" + full.id).html($(this).html());
+                    
+                    var data = { 
+                        "fabricator"    : $(this).html(), 
+                        "order_id"   : full.id
+                    };
+
+                     $.ajax({
+                        'url'  : '/orders/fabricator',
+                        'type' : 'PUT',
+                        'data' : data,
+                        'headers': {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        'success' : function(response) {
+                            alert("Success!");
+                        }
+                    });
+                });
                 return buttons;
             } }
         ]

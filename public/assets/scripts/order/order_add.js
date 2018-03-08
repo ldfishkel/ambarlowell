@@ -47,6 +47,15 @@ jQuery(document).ready(function() {
 
     var fields = function() {
         var client = null;
+        var fabricator = null;
+
+        if ($('#fabricator').text() != 'Fabricator')
+            fabricator = $('#fabricator').text();
+
+        var channel = null;
+
+        if ($('#channel').text() != 'Channel')
+            channel = $('#channel').text();
         
         if ($("#client_id").val() != "")
             client = { 'client_id' : $("#client_id").val() };
@@ -64,11 +73,19 @@ jQuery(document).ready(function() {
 
         var items = items_order();
 
-        return { client : client, items : items, type : type };
+        return { client : client, fabricator : fabricator, channel : channel, items : items, type : type };
     }
 
     $(".typeItem").on("click", function() {
         $("#type").html($(this).html());
+    });
+
+    $(".channelItem").on("click", function() {
+        $("#channel").html($(this).html());
+    });
+
+    $(".fabricatorItem").on("click", function() {
+        $("#fabricator").html($(this).html());
     });
 
     $("#clean_item").on("click", function() {

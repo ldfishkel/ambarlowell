@@ -11,6 +11,10 @@ class Order extends \Eloquent
         'type',
         'status',
         'date',
+        'comment',
+        'delay_comment',
+        'fabricator',
+        'channel',
     ];
 
     public $timestamps = false;
