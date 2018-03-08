@@ -23,11 +23,31 @@
 
                             <div style="padding-left:20px;padding-right:20px;" class="form-group">
 
-                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Client</button>
-                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2">Items</button>
+                                <button type="button" style="display: block" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Client</button>
+                                <button type="button" style="display:block; margin-top: 5px" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#myModal2">Items</button>
 
-                                <div style="display:inline" class="dropdown">
-                                    <button class="btn btn-info btn-lg" type="button" data-toggle="dropdown"><span id="type">Type</span>
+                                <div style="display:block; margin-top: 5px" class="dropdown">
+                                    <button class="btn btn-info btn-lg" type="button" data-toggle="dropdown"><span id="channel">Channel</span>
+                                    <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="channelItem">Instagram</a></li>
+                                        <li><a class="channelItem">Facebook</a></li>
+                                        <li><a class="channelItem">MercadoLibre</a></li>
+                                        <li><a class="channelItem">Contact</a></li>
+                                    </ul>
+                                </div>
+
+                                <div style="display:block; margin-top: 5px" class="dropdown">
+                                    <button class="btn btn-danger btn-lg" type="button" data-toggle="dropdown"><span id="fabricator">Fabricator</span>
+                                    <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="fabricatorItem">Pela</a></li>
+                                        <li><a class="fabricatorItem">Felix</a></li>
+                                    </ul>
+                                </div>
+
+                                <div style="display:block; margin-top: 5px" class="dropdown">
+                                    <button class="btn btn-warning btn-lg" type="button" data-toggle="dropdown"><span id="type">Type</span>
                                     <span class="caret"></span></button>
                                     <ul class="dropdown-menu">
                                         <li><a class="typeItem">Retail</a></li>

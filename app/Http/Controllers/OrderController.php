@@ -47,6 +47,7 @@ class OrderController extends Controller
                 "type" => $order->type,
                 "date" => $order->date,
                 "name" => $client->name,
+                "fabricator" => $order->fabricator,
                 "stock" => $this->enoughStock($order)
             ];
             $response[] = $row;
@@ -142,16 +143,22 @@ class OrderController extends Controller
             'client_id' => $clientId,
             'date'      => date('Y-m-d'),
             'status'    => 'Pending',
+            'fabricator' => $data["fabricator"],
             'type'      => $data["type"],
         ]);
 
+
         foreach ($items as $item) {     
+            $comment = $item["comment"];
+            if (!$comment || count($comment))
+                $comment = ".";
+            
             $newItem = Item::create([
                 'order_id'   => $order->id,
                 'product_id' => $item["product_id"],
                 'amount'     => $item["amount"],
                 'unit_price' => $item["unit_price"],
-                'comment'    => $item["comment"],
+                'comment'    => $comment,
             ]);
             
             $currentStock = Stock::where('product_id', $newItem->product_id)->sum('current');
@@ -177,9 +184,23 @@ class OrderController extends Controller
         
         $item = Item::where("order_id", $data["order_id"])->where("product_id", $data["product_id"])->first();
 
-        $item->comment = $data["comment"];
+        $comment = $item["comment"];
+        if (!$comment || count($comment))
+            $comment = ".";
+
+        $item->comment = $comment;
 
         $item->save();
+    }
+
+    public function fabricator() {
+        $data = Input::all();
+        
+        $order = Order::find($data["order_id"]);
+
+        $order->fabricator = $data["fabricator"];
+
+        $order->save();
     }
 
     public function status($id)
