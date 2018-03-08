@@ -15,6 +15,8 @@ use App\Model\Requested;
 use App\Model\Balance;
 use App\Model\Credit;
 use App\Model\Debt;
+use App\Model\Order;
+use App\Model\Item;
 use App\Logger\AmbarLogger;
 
 class DashboardController extends Controller
@@ -24,10 +26,16 @@ class DashboardController extends Controller
     	$adminUsers = array(
 			"ldfishkel@gmail.com"
 		);
+
+		$fabricatorUsers = array(
+			"pela@ambarlowell.com",
+			"felix@ambarlowell.com"
+		);
 		
 		$user = Auth::user();
 
 		$isAdmin = $user ? in_array($user->email, $adminUsers) : false;
+		$isFabricator = $user ? in_array($user->email, $fabricatorUsers) : false;
 
 		$stock = [
 			"different" => $this->different(),
@@ -59,7 +67,37 @@ class DashboardController extends Controller
 				"stock" => $stock 
 			]);
 			
-		} else
+		} 
+		else if ($isFabricator) 
+		{
+			$orders = Order::where('fabricator', $user->name)->where('status', 'Pending')->get();
+			$ordersResponse = [];
+			
+			foreach ($orders as $order) 
+			{
+				$itemsResponse = [];
+				$items = Item::where('order_id', $order->id)->get();
+				
+				foreach ($items as $item) 
+				{
+					$product = Product::find($item->product_id);
+					$itemsResponse[] = [
+						'product' => $product,
+						'comment' => $item->comment,
+						'amount' => $item->amount
+					];
+				}
+
+				$ordersResponse[] = [
+					'order' => $order, 
+					'items' => $itemsResponse
+				];
+			}
+			
+			return view('fabricator', [
+				"orders" => $ordersResponse 
+			]);
+		} else 
 			return view('welcome', [
 				"isAdmin" => $isAdmin,
 				"stock" => $stock 
