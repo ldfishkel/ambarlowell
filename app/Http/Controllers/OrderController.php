@@ -164,6 +164,8 @@ class OrderController extends Controller
                 'amount'     => $item["amount"],
                 'unit_price' => $item["unit_price"],
                 'comment'    => $comment,
+                'finished'    => false,
+                'delayed'    => false,
             ]);
             
             $currentStock = Stock::where('product_id', $newItem->product_id)->sum('current');
@@ -243,6 +245,36 @@ class OrderController extends Controller
                     $requested->save();
                 }
             }
+        }
+    }
+
+    public function delayed()
+    {
+        $data = Input::all();
+        
+        if (isset($data["id"]))
+        {
+            $item = Item::find($data["id"]);
+
+            $item->delayed = true;
+            $item->delayed_comment = $data["delayed_comment"];
+
+            $item->save();
+        }
+    }
+
+    public function continue()
+    {
+        $data = Input::all();
+        
+        if (isset($data["id"]))
+        {
+            $item = Item::find($data["id"]);
+
+            $item->delayed = false;
+            $item->delayed_comment = "";
+
+            $item->save();
         }
     }
 

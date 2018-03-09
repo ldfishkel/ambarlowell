@@ -85,7 +85,8 @@ class DashboardController extends Controller
 						'id' => $item->id,
 						'product' => $product,
 						'comment' => $item->comment,
-						'amount' => $item->amount
+						'amount' => $item->amount,
+						'delayed' => $item->delayed
 					];
 				}
 

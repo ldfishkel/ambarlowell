@@ -26,8 +26,15 @@ jQuery(document).ready(function() {
         window.location.href = "/" + $(this).attr("id").split('_').join('/'); 
     })
 
+    $(".product").on("click", function() {
+        window.location.href = "/" + $(this).attr("id").split('_').join('/'); 
+    })
+
     $(".finished").on("click", function() {
-        console.log($(this).attr("id").split("_")[1]);
+        $("#item_id").val($(this).attr("id").split("_")[1]);
+    });
+
+    $(".delayed").on("click", function() {
         $("#item_id").val($(this).attr("id").split("_")[1]);
     });
 
@@ -62,6 +69,43 @@ jQuery(document).ready(function() {
         };
 
         finished(data); 
+    });
+
+    $("#submitDelayed").on("click", function() {
+        var data = {
+            'id' : $("#item_id").val(),
+            'delayed_comment' : $("#delayed_reason").val() 
+        };
+
+        $.ajax({
+            'url'  : '/orders/item/delayed',
+            'type' : 'PUT',
+            'data' : data,
+            'headers': {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            'success' : function(response) {
+                window.location.href = "/"; 
+            }
+        });
+    });
+
+    $(".continue").on("click", function() {
+        var data = {
+            'id' : $(this).attr("id").split("_")[1]
+        };
+
+        $.ajax({
+            'url'  : '/orders/item/continue',
+            'type' : 'PUT',
+            'data' : data,
+            'headers': {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            'success' : function(response) {
+                window.location.href = "/"; 
+            }
+        });
     });
 
 });
