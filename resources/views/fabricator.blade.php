@@ -118,7 +118,7 @@
                                     <div class="itemContainer hidden" style="width:100%">
                                         <div class="row" style="width:100%">
                                             <div class="col" style="width:49%; float:left;">
-                                                <a href="/orders/view/{{$order['order']->id}}" style="width: -webkit-fill-available;" class="btn btn-info btn-xl"> Order {{ $order["order"]->id }} </a>
+                                                <button id="orders_view_{{$order['order']->id}}" style="width: -webkit-fill-available;" class="btn btn-info btn-xl view"> Order {{ $order["order"]->id }} </button>
                                             </div>
                                             <div class="col" style="width: 49%; float:right">
                                                 <button style="width: -webkit-fill-available;" class="btn btn-primary btn-xl"> {{ $order["order"]->date }} </button>

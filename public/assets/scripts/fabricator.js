@@ -22,5 +22,9 @@ jQuery(document).ready(function() {
         $(".items .itemContainer:eq(" + index + ")").removeClass("hidden");
     });
 
+    $(".view").on("click", function() {
+        window.location.href = "/" + $(this).attr("id").split('_').join('/'); 
+    })
+
 });
 
