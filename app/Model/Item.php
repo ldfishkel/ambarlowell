@@ -13,6 +13,9 @@ class Item extends \Eloquent
         'amount',
         'unit_price',
         'comment',
+        'finished',
+        'delayed',
+        'delayed_comment',
     ];
 
     public $timestamps = false;

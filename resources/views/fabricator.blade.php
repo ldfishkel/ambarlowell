@@ -134,12 +134,16 @@
                                         </div>
                                         
                                         <div style="width:100%" class="row">
-                                            <img style="width:100%"  src="/assets/img/{{ $item['product']->image }}">
+                                            <img class="product" id="products_view_{{ $item['product']->id }}" style="width:100%"  src="/assets/img/{{ $item['product']->image }}">
                                         </div>
                                         
                                         <div class="row" style="width:100%">
                                             <div class="col" style="width:49%; float:left;">
-                                                <button id="delay" style="width: -webkit-fill-available;" class="btn btn-danger btn-xl"> Delay </button>
+                                                @if ($item['delayed'])
+                                                    <button id="continue_{{ $item['id'] }}" style="width: -webkit-fill-available;" class="btn btn-success btn-xl continue"> Continue </button>
+                                                @else
+                                                    <button id="delayed_{{ $item['id'] }}" style="width: -webkit-fill-available;" class="btn btn-danger btn-xl delayed" data-toggle="modal" data-target="#delayedModal"> Delayed </button>
+                                                @endif
                                             </div>
                                             <div class="col" style="width: 49%; float:right">
                                                 <button id="finished_{{ $item['id'] }}" style="width: -webkit-fill-available;" data-toggle="modal" data-target="#finishedModal" class="btn btn-primary btn-xl finished"> Finished </button>
@@ -167,7 +171,7 @@
         </div>
 
     <!--__________________________________________________________________________________________________________________-->
-    <!--______________________________________STATUS MODAL________________________________________________________________-->
+    <!--______________________________________FINISHED MODAL______________________________________________________________-->
     <!--__________________________________________________________________________________________________________________-->
 
         <div class="modal fade" id="finishedModal" role="dialog">
@@ -183,6 +187,33 @@
                         <div class="row" style="margin:auto">
                             <button style="width:49%" id="submitWithStock" class="btn btn-success">Yes</button>
                             <button style="width:49%" id="submitWithoutStock" class="btn btn-danger">No</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!--__________________________________________________________________________________________________________________-->
+    <!--______________________________________DELAYED MODAL_______________________________________________________________-->
+    <!--__________________________________________________________________________________________________________________-->
+
+        <div class="modal fade" id="delayedModal" role="dialog">
+            <div class="modal-dialog">
+            
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Delayed Reason</h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <div class="row" style="margin: auto; margin-bottom: 10px">
+                            <input style="width:100%" id="delayed_reason" type="text" value="">
+                        </div>
+                        
+                        <div class="row" style="margin:auto">
+                            <button style="width:100%" id="submitDelayed" class="btn btn-danger">Delayed</button>
                         </div>
 
                     </div>

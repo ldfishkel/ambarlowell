@@ -47,6 +47,8 @@ Route::post('/orders/status/{id}',    'OrderController@status');
 Route::put('/orders/comment',         'OrderController@comment');
 Route::put('/orders/fabricator',      'OrderController@fabricator');
 Route::put('/orders/item/finished',   'OrderController@finished');
+Route::put('/orders/item/delayed',    'OrderController@delayed');
+Route::put('/orders/item/continue',   'OrderController@continue');
 
 ///////////////////////////////////////////////////////////////////////////////////////
 // CLIENTS

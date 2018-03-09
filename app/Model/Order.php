@@ -11,7 +11,6 @@ class Order extends \Eloquent
         'type',
         'status',
         'date',
-        'delay_comment',
         'fabricator',
         'channel',
     ];
