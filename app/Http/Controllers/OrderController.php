@@ -57,6 +57,33 @@ class OrderController extends Controller
         return Datatables::of($response)->make(true);
     }
 
+    public function ready()
+    {
+        $response = [];
+        $data = Input::all();
+
+        $start = $data["start"];
+        $length = $data["length"];
+
+        $orders = Order::where('status', 'Ready')->skip($start)->take($length)->get();
+
+        foreach ($orders as $order) 
+        {
+            $client = Client::find($order->client_id);
+            $row = [
+                "id" => $order->id,
+                "type" => $order->type,
+                "date" => $order->date,
+                "name" => $client->name,
+                "fabricator" => $order->fabricator,
+                "stock" => $this->enoughStock($order)
+            ];
+            $response[] = $row;
+        }
+
+        return Datatables::of($response)->make(true);
+    }
+
     public function sold()
     {
          $orders = Order::join('clients', 'orders.client_id', '=', 'clients.id')->where('status', 'Sold')
@@ -192,8 +219,8 @@ class OrderController extends Controller
         
         $item = Item::where("order_id", $data["order_id"])->where("product_id", $data["product_id"])->first();
 
-        $comment = $item["comment"];
-        if (!$comment || count($comment))
+        $comment = $data["comment"];
+        if (!$comment || count($comment) == 0)
             $comment = ".";
 
         $item->comment = $comment;
@@ -215,7 +242,7 @@ class OrderController extends Controller
     public function finished()
     {
         $data = Input::all();
-        
+
         if (isset($data["id"]))
         {
             $item = Item::find($data["id"]);
@@ -224,8 +251,18 @@ class OrderController extends Controller
 
             $item->save();
 
-            if ($data["stock"] == true)
+            $count = Item::where('order_id', $item->order_id)->where('finished', false)->count();
+
+            if ($count == 0)
             {
+                $order = Order::find($item->order_id);
+                $order->status = 'Ready';
+                $order->save();
+            }
+
+            if ($data["stock"] == "true")
+            {
+                AmbarLogger::log("add stock automagically");
                 Stock::create([
                     'product_id'       => $item->product_id,
                     'initial'          => $item->amount,
@@ -291,6 +328,25 @@ class OrderController extends Controller
 
         $order->save();
     }
+
+    public function statusReady($id)
+    {
+        $data = Input::all();
+
+        $order = Order::find($id);
+
+        $order->status = 'Ready';
+
+        $order->save();
+
+        $items = Item::where('order_id', $id)->get();
+
+        foreach ($items as $item) {
+            $item->finished = true;
+            $item->save();
+        }
+    }
+
 
     private function soldOrder($order, $data) 
     {

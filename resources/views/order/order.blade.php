@@ -18,6 +18,7 @@
 
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#pending">Pending</a></li>
+                    <li><a data-toggle="tab" href="#ready">Ready</a></li>
                     <li><a data-toggle="tab" href="#sold">Sold</a></li>
                     <li><a data-toggle="tab" href="#cancelled">Cancelled</a></li>
                 </ul>
@@ -26,6 +27,22 @@
                     <div id="pending" class="tab-pane fade in active">
                         <div class="panel-body">
                            <table style="width:100%" class="table table-bordered" id="order-table-pending">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Stock</th>
+                                        <th>Type</th>
+                                        <th>Client</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="ready" class="tab-pane fade in">
+                        <div class="panel-body">
+                           <table style="width:100%" class="table table-bordered" id="order-table-ready">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
@@ -121,6 +138,34 @@
             </div>
         </div>
     </div>
+
+
+
+<!--__________________________________________________________________________________________________________________-->
+<!--______________________________________STATUS MODAL________________________________________________________________-->
+<!--__________________________________________________________________________________________________________________-->
+
+    <div class="modal fade" id="readyModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Change Order to Ready Status</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>This will automatically change all the order's items to finished status and therefore the fabricators won't be able to see those tasks any longer.</h4>
+                    <h5 style="text-align: center;">Are you sure?</h5>
+                    <div class="row" style="margin: auto; margin-top: 10px">
+                        <button style="width:49%; float:left" type="button" class="btn btn-success btn-lg" id="submitReady">Yes</button>
+                        <button style="width:49%; float:right" type="button" class="btn btn-danger btn-lg" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </div>
 @endsection
