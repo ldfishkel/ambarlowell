@@ -13,6 +13,7 @@
 
         <script type="text/javascript" src="/assets/scripts/jquery.min.js"></script>
         <script type="text/javascript" src="/assets/scripts/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/assets/scripts/jquery-mobile.min.js"></script>
         <script type="text/javascript" src="/assets/scripts/bootstrap.min.js"></script>
         <script type="text/javascript" src="/assets/scripts/datatables.js"></script>
         <script type="text/javascript" src="/assets/scripts/fabricator.js"></script>
@@ -77,15 +78,18 @@
             }
 
             .container {
-                margin:auto;
+                margin-top: 50px;
+                width: 95%;
+                left: 28px;
+                position: relative;
+            }
+
+            .itemContainer {
+                display: inline-block;
             }
         </style>
     </head>
     <body>
-
-        <div class="flex-center">
-            <img style="position: fixed;top: -50px;opacity: 0.1;" src="/img/Logo.v4.png"></img>
-        </div>
 
         <div class="content flex-center">
             @if (Route::has('login'))
@@ -109,13 +113,51 @@
                         @auth
                     
                             <div class="items row">
-                                <button id="prev" class="btn" width="30px" height="100%"> < </button>
                                 @foreach ($orders as $order)
                                     @foreach ($order["items"] as $item)
-                                    <img width="255px" class="hidden" src="/assets/img/{{$item['product']->image}}">
+                                    <div class="itemContainer hidden" style="width:100%">
+                                        <div class="row" style="width:100%">
+                                            <div class="col" style="width:49%; float:left;">
+                                                <a href="/orders/view/{{$order['order']->id}}" style="width: -webkit-fill-available;" class="btn btn-info btn-xl"> Order {{ $order["order"]->id }} </a>
+                                            </div>
+                                            <div class="col" style="width: 49%; float:right">
+                                                <button style="width: -webkit-fill-available;" class="btn btn-primary btn-xl"> {{ $order["order"]->date }} </button>
+                                            </div>
+                                        </div>
+
+                                        <div style="width:100%; text-align: center" class="row">
+                                            <p style="margin:0px;width:100%; background-color: #f93" >{{ ($item['comment'] && $item['comment'] != "") ? $item['comment'] : "No comment"  }}</p>
+                                        </div>
+
+                                        <div style="width:100%; text-align: center" class="row">
+                                            <p style="margin:0px; width:100%; background-color: #E74" >{{ $item['amount'] }} Units  </p>
+                                        </div>
+                                        
+                                        <div style="width:100%" class="row">
+                                            <img style="width:100%"  src="/assets/img/{{ $item['product']->image }}">
+                                        </div>
+                                        
+                                        <div class="row" style="width:100%">
+                                            <div class="col" style="width:49%; float:left;">
+                                                <button id="delay" style="width: -webkit-fill-available;" class="btn btn-danger btn-xl"> Delay </button>
+                                            </div>
+                                            <div class="col" style="width: 49%; float:right">
+                                                <button id="finished" style="width: -webkit-fill-available;" class="btn btn-primary btn-xl"> Finished </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                     @endforeach
                                 @endforeach 
-                                <button id="next" class="btn" width="30px" height="100%"> > </button>
+                            </div>
+                            <div class="row">
+                                <div style="width:100%" class="row">
+                                    <div class="col" style="width:49%; float:left;">
+                                        <button id="prev" style="width: -webkit-fill-available;" class="btn btn-default btn-xl"> < prev </button>
+                                    </div>
+                                    <div class="col" style="width:49%; float:right;">
+                                        <button id="next" style="width: -webkit-fill-available;" class="btn btn-default btn-xl"> next > </button>
+                                    </div>
+                                </div>
                             </div>
 
                         @endauth

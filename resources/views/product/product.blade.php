@@ -23,10 +23,10 @@
                     <li><a data-toggle="tab" href="#ab">White Steel (AB)</a></li>
                 </ul>
 
-                <div class="tab-content">
+                <div class="tab-content" style="overflow-x: scroll;">
                     <div id="pf" class="tab-pane fade in active">
                         <div class="panel-body">
-                           <table style="width:100%" class="table table-bordered" id="product-table">
+                           <table style="width:100%" class="table table-striped table-bordered table-hover" id="product-table">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
@@ -41,7 +41,7 @@
 
                     <div id="pi" class="tab-pane fade in">
                         <div class="panel-body">
-                           <table style="width:100%" class="table table-bordered" id="product-table-pi">
+                           <table style="width:100%" class="table table-striped table-bordered table-hover" id="product-table-pi">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
@@ -56,7 +56,7 @@
 
                     <div id="ac" class="tab-pane fade in">
                         <div class="panel-body">
-                           <table style="width:100%" class="table table-bordered" id="product-table-ac">
+                           <table style="width:100%" class="table table-striped table-bordered table-hover" id="product-table-ac">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
@@ -71,7 +71,7 @@
 
                     <div id="ab" class="tab-pane fade in">
                         <div class="panel-body">
-                           <table style="width:100%" class="table table-bordered" id="product-table-ab">
+                           <table style="width:100%" class="table table-striped table-bordered table-hover" id="product-table-ab">
                                 <thead>
                                     <tr>
                                         <th>Id</th>

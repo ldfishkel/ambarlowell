@@ -23,7 +23,7 @@
                     <h3 class="col-lg-12" style="float:none;margin:auto">Order View</h3>
                 </div>
 
-                <div class="panel-body">
+                <div class="panel-body" style="overflow-x: scroll;">
 
                     <div class="form-body">
 
