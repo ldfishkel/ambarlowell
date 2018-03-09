@@ -133,11 +133,11 @@
                                             <p style="margin:0px; width:100%; background-color: #E74" >{{ $item['amount'] }} Units  </p>
                                         </div>
                                         
-                                        <div style="width:100%" class="row">
+                                        <div style="width:100%; min-height: 350px;"  class="row">
                                             <img class="product" id="products_view_{{ $item['product']->id }}" style="width:100%"  src="/assets/img/{{ $item['product']->image }}">
                                         </div>
                                         
-                                        <div class="row" style="width:100%">
+                                        <div class="row" style="width:100%; margin-top: 5px">
                                             <div class="col" style="width:49%; float:left;">
                                                 @if ($item['delayed'])
                                                     <button id="continue_{{ $item['id'] }}" style="width: -webkit-fill-available;" class="btn btn-success btn-xl continue"> Continue </button>
@@ -153,7 +153,7 @@
                                     @endforeach
                                 @endforeach 
                             </div>
-                            <div class="row">
+                            <div style="margin-top:5px" class="row">
                                 <div style="width:100%" class="row">
                                     <div class="col" style="width:49%; float:left;">
                                         <button id="prev" style="width: -webkit-fill-available;" class="btn btn-default btn-xl"> < prev </button>
