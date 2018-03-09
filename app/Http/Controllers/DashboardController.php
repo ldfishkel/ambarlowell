@@ -76,12 +76,13 @@ class DashboardController extends Controller
 			foreach ($orders as $order) 
 			{
 				$itemsResponse = [];
-				$items = Item::where('order_id', $order->id)->get();
+				$items = Item::where('order_id', $order->id)->where('finished', false)->get();
 				
 				foreach ($items as $item) 
 				{
 					$product = Product::find($item->product_id);
 					$itemsResponse[] = [
+						'id' => $item->id,
 						'product' => $product,
 						'comment' => $item->comment,
 						'amount' => $item->amount
@@ -93,7 +94,7 @@ class DashboardController extends Controller
 					'items' => $itemsResponse
 				];
 			}
-			
+
 			return view('fabricator', [
 				"orders" => $ordersResponse 
 			]);

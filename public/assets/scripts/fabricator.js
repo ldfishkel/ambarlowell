@@ -26,5 +26,43 @@ jQuery(document).ready(function() {
         window.location.href = "/" + $(this).attr("id").split('_').join('/'); 
     })
 
+    $(".finished").on("click", function() {
+        console.log($(this).attr("id").split("_")[1]);
+        $("#item_id").val($(this).attr("id").split("_")[1]);
+    });
+
+    var finished = function(data)
+    {
+        $.ajax({
+            'url'  : '/orders/item/finished',
+            'type' : 'PUT',
+            'data' : data,
+            'headers': {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            'success' : function(response) {
+                window.location.href = "/"; 
+            }
+        });
+    }
+
+    $("#submitWithStock").on("click", function() {
+        var data = {
+            'id' : $("#item_id").val(),
+            'stock' : true 
+        };
+
+        finished(data);
+    });
+
+    $("#submitWithoutStock").on("click", function() {
+       var data = {
+            'id' : $("#item_id").val(),
+            'stock' : false 
+        };
+
+        finished(data); 
+    });
+
 });
 

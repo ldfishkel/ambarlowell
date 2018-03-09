@@ -142,7 +142,7 @@
                                                 <button id="delay" style="width: -webkit-fill-available;" class="btn btn-danger btn-xl"> Delay </button>
                                             </div>
                                             <div class="col" style="width: 49%; float:right">
-                                                <button id="finished" style="width: -webkit-fill-available;" class="btn btn-primary btn-xl"> Finished </button>
+                                                <button id="finished_{{ $item['id'] }}" style="width: -webkit-fill-available;" data-toggle="modal" data-target="#finishedModal" class="btn btn-primary btn-xl finished"> Finished </button>
                                             </div>
                                         </div>
                                     </div>
@@ -164,6 +164,30 @@
                 @endif
             </div>
 
+        </div>
+
+    <!--__________________________________________________________________________________________________________________-->
+    <!--______________________________________STATUS MODAL________________________________________________________________-->
+    <!--__________________________________________________________________________________________________________________-->
+
+        <div class="modal fade" id="finishedModal" role="dialog">
+            <div class="modal-dialog">
+            
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Add Stock Automatically?</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input id="item_id" type="hidden" value="">
+                        <div class="row" style="margin:auto">
+                            <button style="width:49%" id="submitWithStock" class="btn btn-success">Yes</button>
+                            <button style="width:49%" id="submitWithoutStock" class="btn btn-danger">No</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>

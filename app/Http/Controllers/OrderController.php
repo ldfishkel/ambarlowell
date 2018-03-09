@@ -40,7 +40,8 @@ class OrderController extends Controller
 
         $orders = Order::where('status', 'Pending')->skip($start)->take($length)->get();
 
-        foreach ($orders as $order) {
+        foreach ($orders as $order) 
+        {
             $client = Client::find($order->client_id);
             $row = [
                 "id" => $order->id,
@@ -70,14 +71,16 @@ class OrderController extends Controller
         return Datatables::of($orders)->make(true);
     }
 
-    private function enoughStock($order) {
+    private function enoughStock($order) 
+    {
         $items = Item::leftJoin("stock", "order_item.product_id", "stock.product_id")
                      ->where("order_id", $order->id)
                      ->groupBy(["product_id", "amount"])
                      ->select(["order_item.product_id", "order_item.amount", DB::raw("sum(stock.current) as current")])
                      ->get();
 
-        foreach ($items as $item) {
+        foreach ($items as $item) 
+        {
             if ($item->amount > $item->current)
                 return false;
         }
@@ -98,7 +101,8 @@ class OrderController extends Controller
         $items = Item::where('order_id', $order->id)->get();
         $total = 0;
         
-        foreach ($items as $item) {
+        foreach ($items as $item) 
+        {
             $product = Product::where('id', $item->product_id)->first();
             $data = [
                 "product_id" => $product->id,
@@ -148,7 +152,8 @@ class OrderController extends Controller
         ]);
 
 
-        foreach ($items as $item) {     
+        foreach ($items as $item) 
+        {     
             $comment = $item["comment"];
             if (!$comment || count($comment))
                 $comment = ".";
@@ -179,7 +184,8 @@ class OrderController extends Controller
         }
     }
 
-    public function comment() {
+    public function comment() 
+    {
         $data = Input::all();
         
         $item = Item::where("order_id", $data["order_id"])->where("product_id", $data["product_id"])->first();
@@ -193,7 +199,8 @@ class OrderController extends Controller
         $item->save();
     }
 
-    public function fabricator() {
+    public function fabricator() 
+    {
         $data = Input::all();
         
         $order = Order::find($data["order_id"]);
@@ -201,6 +208,42 @@ class OrderController extends Controller
         $order->fabricator = $data["fabricator"];
 
         $order->save();
+    }
+
+    public function finished()
+    {
+        $data = Input::all();
+        
+        if (isset($data["id"]))
+        {
+            $item = Item::find($data["id"]);
+
+            $item->finished = true;
+
+            $item->save();
+
+            if ($data["stock"] == true)
+            {
+                Stock::create([
+                    'product_id'       => $item->product_id,
+                    'initial'          => $item->amount,
+                    'current'          => $item->amount,
+                    'settlement'       => 90,
+                    'entrance'         => date('Y-m-d'),
+                ]);
+
+                $requested = Requested::where('product_id', $item->product_id)->first(); 
+                        
+                if ($requested) {
+                    if ($requested->amount > $item->amount)
+                        $requested->amount -= $item->amount;
+                    else
+                        $requested->amount = 0;
+
+                    $requested->save();
+                }
+            }
+        }
     }
 
     public function status($id)
@@ -217,11 +260,13 @@ class OrderController extends Controller
         $order->save();
     }
 
-    private function soldOrder($order, $data) {
+    private function soldOrder($order, $data) 
+    {
         $items = Item::where('order_id', $order->id)->get();
         $amount = 0;
 
-        foreach ($items as $item) {
+        foreach ($items as $item) 
+        {
             $amount += $item->amount * $item->unit_price;
 
             $allStock = Stock::where('product_id', $item->product_id)
@@ -232,7 +277,8 @@ class OrderController extends Controller
 
             $amountToTake = $item->amount;
             
-            foreach ($allStock as $stock) {
+            foreach ($allStock as $stock) 
+            {
                 if ($stock->current < $amountToTake) {
                     $amountToTake -= $stock->current;
                     $stock->current = 0;
