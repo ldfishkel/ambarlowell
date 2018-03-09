@@ -33,7 +33,7 @@ jQuery(document).ready(function() {
                             +            '<li><a class="fabricatorItem_' + full.id + '">Felix</a></li>'
                             +        '</ul>'
                             +    '</div>'
-                            + '<button type="button" style="margin-left:5px" class="btn btn-success btn-xs status" data-toggle="modal" data-target="#statusModal">Status</button>' ; 
+                            + '<button type="button" style="margin-left:5px" class="btn btn-success btn-xs ready" data-toggle="modal" data-target="#readyModal">Ready</button>' ; 
                 
                 $(".fabricatorItem_" + full.id ).on("click", function() {
                     $("#fabricator_" + full.id).html($(this).html());
@@ -55,6 +55,38 @@ jQuery(document).ready(function() {
                         }
                     });
                 });
+                return buttons;
+            } }
+        ]
+    });
+
+    var tableReady = $('#order-table-ready').DataTable({
+        processing: true,
+        serverSide: true,
+        pageLength : 100,
+        ajax: { url : "/orders/data/ready"},
+        columns: [
+            { data: 'id', name: 'id' },
+            { data: 'stock', name: 'stock',
+            render: function ( data, type, full, meta ) { 
+                var buttons = '<span class="label label-success stockCell">Enough</span>';
+                if (data == false) 
+                    buttons = '<span class="label label-danger stockCell">NOT Enough</span>';
+                
+                return buttons;
+            } },
+            { data: 'type', name: 'type' },
+            { name: 'name', data : 'name', searchable : false },
+            { data: 'date', name: 'date' },
+            { data: "Action", orderable: false,
+            render: function ( data, type, full, meta ) { 
+                var fabricator = full.fabricator;
+                if (fabricator == null)
+                    fabricator = 'Fabricator';
+
+                var buttons = '<a  href="javascript:;" class="btn btn-info btn-xs view">View</a>'
+                            + '<button type="button" style="margin-left:5px" class="btn btn-success btn-xs status" data-toggle="modal" data-target="#statusModal">Status</button>' ; 
+                
                 return buttons;
             } }
         ]
@@ -102,12 +134,22 @@ jQuery(document).ready(function() {
         window.location.href = "/orders/view/" + id; 
     });
 
+    tableReady.on('click', '.view', function (e) {
+        var id = $(this).parent().siblings(":first").text();
+        window.location.href = "/orders/view/" + id; 
+    });
+
     tableCancelled.on('click', '.view', function (e) {
         var id = $(this).parent().siblings(":first").text();
         window.location.href = "/orders/view/" + id; 
     });
 
-    table.on('click', '.status', function (e) {
+    table.on('click', '.ready', function (e) {
+        var id = $(this).parent().siblings(":first").text();
+        $("#order_id").val(id);
+    });
+
+    tableReady.on('click', '.status', function (e) {
         var stockCell = $($(this).parent().siblings()[1]).html();
         var id = $(this).parent().siblings(":first").text();
 
@@ -152,7 +194,23 @@ jQuery(document).ready(function() {
             },
             'success' : function(response) {
                 alert("Success!");
-                //window.location.href = "/"; 
+                window.location.href = "/orders"; 
+            }
+        });
+    });
+
+    $("#submitReady").on("click", function() {
+        var id = $("#order_id").val();
+
+        $.ajax({
+            'url'  : '/orders/ready/' + id,
+            'type' : 'PUT',
+            'data' : {},
+            'headers': {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            'success' : function(response) {
+                alert("Success!");
                 window.location.href = "/orders"; 
             }
         });

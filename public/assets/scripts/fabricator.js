@@ -24,11 +24,21 @@ jQuery(document).ready(function() {
 
     $(".view").on("click", function() {
         window.location.href = "/" + $(this).attr("id").split('_').join('/'); 
-    })
+    });
 
     $(".product").on("click", function() {
         window.location.href = "/" + $(this).attr("id").split('_').join('/'); 
-    })
+    });
+
+    $("#products").on("click", function(e) {
+        e.preventDefault();
+        window.location.href = "/products";
+    });
+
+    $("#costs").on("click", function(e) {
+        e.preventDefault();
+        window.location.href = "/costs";
+    });
 
     $(".finished").on("click", function() {
         $("#item_id").val($(this).attr("id").split("_")[1]);

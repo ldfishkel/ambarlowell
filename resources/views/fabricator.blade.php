@@ -97,8 +97,8 @@
 
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/products') }}">Products</a>
-                        <a href="{{ url('/costs') }}">Costs</a>
+                        <a id="products">Products</a>
+                        <a id="costs">Costs</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                     @endauth

@@ -37,6 +37,7 @@ Route::post('/products/{id}/stock/create', 'StockController@create');
 ///////////////////////////////////////////////////////////////////////////////////////
 
 Route::get('/orders', 		     	  'OrderController@index');
+Route::get('/orders/data/ready', 	  'OrderController@ready');
 Route::get('/orders/data/pending', 	  'OrderController@pending');
 Route::get('/orders/data/sold', 	  'OrderController@sold');
 Route::get('/orders/data/cancelled',  'OrderController@cancelled');
@@ -44,6 +45,7 @@ Route::get('/orders/add', 	      	  'OrderController@add');
 Route::get('/orders/view/{id}', 	  'OrderController@view');
 Route::post('/orders/create',    	  'OrderController@create');
 Route::post('/orders/status/{id}',    'OrderController@status');
+Route::put('/orders/ready/{id}',      'OrderController@statusReady');
 Route::put('/orders/comment',         'OrderController@comment');
 Route::put('/orders/fabricator',      'OrderController@fabricator');
 Route::put('/orders/item/finished',   'OrderController@finished');
