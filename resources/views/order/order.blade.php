@@ -25,7 +25,7 @@
 
                 <div class="tab-content">
                     <div id="pending" class="tab-pane fade in active">
-                        <div class="panel-body">
+                        <div class="panel-body" style="overflow-x: scroll;">
                            <table style="width:100%" class="table table-bordered" id="order-table-pending">
                                 <thead>
                                     <tr>
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div id="ready" class="tab-pane fade in">
-                        <div class="panel-body">
+                        <div class="panel-body" style="overflow-x: scroll;">
                            <table style="width:100%" class="table table-bordered" id="order-table-ready">
                                 <thead>
                                     <tr>
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <div id="sold" class="tab-pane fade in">
-                        <div class="panel-body">
+                        <div class="panel-body" style="overflow-x: scroll;">
                            <table style="width:100%" class="table table-bordered" id="order-table-sold">
                                 <thead>
                                     <tr>
@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     <div id="cancelled" class="tab-pane fade in">
-                        <div class="panel-body">
+                        <div class="panel-body" style="overflow-x: scroll;">
                            <table style="width:100%" class="table table-bordered" id="order-table-cancelled">
                                 <thead>
                                     <tr>
