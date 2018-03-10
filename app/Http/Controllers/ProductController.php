@@ -94,6 +94,8 @@ class ProductController extends Controller
             } 
         }
 
+        return $product->id;
+
     }
 
     private function lastModel($type) 

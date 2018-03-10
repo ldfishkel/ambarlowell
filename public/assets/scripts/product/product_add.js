@@ -69,7 +69,8 @@ jQuery(document).ready(function() {
             },
             'success' : function(response) {
                 alert("Success!");
-                window.location.href = "/products"; 
+
+                window.location.href = "/products/edit/" + response; 
             }
         });
     });

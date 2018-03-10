@@ -24,7 +24,33 @@
                             <div style="padding-left:20px;padding-right:20px;" class="form-group">
 
                                 <button type="button" style="display: block" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Client</button>
-                                <button type="button" style="display:block; margin-top: 5px" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#myModal2">Items</button>
+                                
+                                <div style="display: block">
+    
+                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#pfSelection">
+                                        PF <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+
+                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#myModal2">
+                                        PI <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+
+                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#myModal2">
+                                        AC <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+
+                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#myModal2">
+                                        AB <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+
+                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#addProductModal">
+                                        NEW <span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                    
+                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#myModal2">
+                                        Items <span class="glyphicon glyphicon-list"></span>
+                                    </button>
+                                </div>
 
                                 <div style="display:block; margin-top: 5px" class="dropdown">
                                     <button class="btn btn-info btn-lg" type="button" data-toggle="dropdown"><span id="channel">Channel</span>
@@ -144,12 +170,12 @@
         <div class="modal-dialog">
         
           <!-- Modal content-->
-            <div class="modal-content" style="width: fit-content;">
+            <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Items</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="overflow-y: scroll;">
                 
                 <div class="form-group">
                     {{ Form::text('p', '', ['id' =>  'p', 'placeholder' =>  'search product'])}}
@@ -224,7 +250,7 @@
                     
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="overflow-x: scroll">
                         <table style="width:100%" class="table table-bordered" id="product-table">
                             <thead>
                                 <tr>
@@ -243,6 +269,56 @@
             </div>
         </div>
     </div>
+
+
+
+<!--__________________________________________________________________________________________________________________-->
+<!--______________________________________MODAL NEW PROD______________________________________________________________-->
+<!--__________________________________________________________________________________________________________________-->
+
+    <div class="modal fade" id="addProductModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Items</h4>
+                </div>
+                <div class="modal-body">
+                <iframe height="500px" src="/products/add"></iframe>   
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--__________________________________________________________________________________________________________________-->
+<!--______________________________________PF__________________________________________________________________________-->
+<!--__________________________________________________________________________________________________________________-->
+
+    <div class="modal fade" id="pfSelection" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Items</h4>
+                </div>
+                <div class="modal-body">
+                    <table style="width:100%" class="table table-striped table-bordered table-hover" id="product-table-pf">
+                        <thead>
+                            <tr>
+                                <th>image</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 @endsection
 
@@ -250,6 +326,7 @@
 @section('scripts')
     {{ HTML::script('assets/scripts/jquery.min.js') }}
     {{ HTML::script('assets/scripts/jquery-ui.min.js') }}
+    {{ HTML::script('assets/scripts/bootstrap.min.js') }}
     {{ HTML::script('assets/scripts/datatables.js') }}
     {{ HTML::script('assets/scripts/validators/orderValidator.js') }}
     {{ HTML::script('assets/scripts/order/order_add.js') }}
