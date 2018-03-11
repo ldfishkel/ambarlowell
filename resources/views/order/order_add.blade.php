@@ -42,7 +42,7 @@
                                         AB <span class="glyphicon glyphicon-search"></span>
                                     </button>
 
-                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-info btn-sm" id="addNew" data-toggle="modal" data-target="#addProductModal">
+                                    <button type="button" style="display:inline-block; margin-top: 5px; float: right;" class="btn btn-info btn-sm" id="addNew" data-toggle="modal" data-target="#addProductModal">
                                         NEW <span class="glyphicon glyphicon-plus"></span>
                                     </button>
                                     
