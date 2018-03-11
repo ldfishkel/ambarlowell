@@ -347,7 +347,7 @@ jQuery(document).ready(function() {
     });
 
     $("#closeNew").on("click", function() {
-        document.getElementById("newIframe").src = "/products/add";
+        document.getElementById("newIframe").src = "/products/add?addorder=1";
     });
 
     $("#pfSearch").on("click", function() {
