@@ -46,16 +46,19 @@
                                         NEW <span class="glyphicon glyphicon-plus"></span>
                                     </button>
                                     
-                                    <button type="button" style="display:block; margin-top: 5px" id="itemsList" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#myModal2">
-                                        Items <span class="glyphicon glyphicon-list"></span>
+                                    <button type="button" style="display:block; margin-top: 5px; width: 100%; text-align: left" id="itemsList" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#myModal2">
+                                        Items <span style="float: right;" class="glyphicon glyphicon-list"></span>
                                     </button>
                                 </div>
 
-                                <button type="button" style="display: block; margin-top: 5px" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Client</button>
+                                <button type="button" style="display: block; margin-top: 5px;width: 100%;text-align: left" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                    Client
+                                    <span style="float: right;" class="glyphicon glyphicon-user"></span>
+                                </button>
                                 
                                 <div style="display:block; margin-top: 5px" class="dropdown">
-                                    <button class="btn btn-info btn-lg" type="button" data-toggle="dropdown"><span id="channel">Channel</span>
-                                    <span class="caret"></span></button>
+                                    <button class="btn btn-info btn-lg" style="width: 100%; text-align: left" type="button" data-toggle="dropdown"><span id="channel">Channel</span>
+                                    <span style="float: right;" class="caret"></span></button>
                                     <ul class="dropdown-menu">
                                         <li><a class="channelItem">Instagram</a></li>
                                         <li><a class="channelItem">Facebook</a></li>
@@ -65,8 +68,8 @@
                                 </div>
 
                                 <div style="display:block; margin-top: 5px" class="dropdown">
-                                    <button class="btn btn-danger btn-lg" type="button" data-toggle="dropdown"><span id="fabricator">Fabricator</span>
-                                    <span class="caret"></span></button>
+                                    <button class="btn btn-danger btn-lg" style="width: 100%; text-align: left" type="button" data-toggle="dropdown"><span id="fabricator">Fabricator</span>
+                                    <span style="float: right;" class="caret"></span></button>
                                     <ul class="dropdown-menu">
                                         <li><a class="fabricatorItem">Pela</a></li>
                                         <li><a class="fabricatorItem">Felix</a></li>
@@ -74,8 +77,8 @@
                                 </div>
 
                                 <div style="display:block; margin-top: 5px" class="dropdown">
-                                    <button class="btn btn-warning btn-lg" type="button" data-toggle="dropdown"><span id="type">Type</span>
-                                    <span class="caret"></span></button>
+                                    <button class="btn btn-warning btn-lg" style="width: 100%; text-align: left" type="button" data-toggle="dropdown"><span id="type">Type</span>
+                                    <span style="float: right;"  class="caret"></span></button>
                                     <ul class="dropdown-menu">
                                         <li><a class="typeItem">Retail</a></li>
                                         <li><a class="typeItem">Wholesale</a></li>
@@ -83,8 +86,8 @@
                                     </ul>
                                 </div>
 
-                                <div class="row" style="float: right; margin-right: 0px">
-                                    <a id="submit" class="btn btn-xl btn-success">Save<span style="margin-left: 5px" class="glyphicon glyphicon-floppy-disk"></span></a>
+                                <div style="display: block; margin-top: 5px">
+                                    <a style="width: 100%; text-align: left" id="submit" class="btn btn-lg btn-success">Save<span style="margin-left: 5px; float: right;" class="glyphicon glyphicon-floppy-disk"></span></a>
                                 </div>
 
                             </div>
