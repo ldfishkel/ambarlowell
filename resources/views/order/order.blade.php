@@ -60,7 +60,6 @@
                                         <th>Id</th>
                                         <th>Client</th>
                                         <th>Date</th>
-                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -74,7 +73,6 @@
                                         <th>Id</th>
                                         <th>Client</th>
                                         <th>Date</th>
-                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                             </table>

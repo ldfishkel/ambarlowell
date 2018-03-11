@@ -1,5 +1,8 @@
 jQuery(document).ready(function() {
 
+    if(location.search.substr(1).split('=')[0] == 'addorder')
+        $(".navbar-header").css('display', 'none');
+
     if ($("#fabricated").val() == 1)
         $("#fabricated").prop('checked', true);
 
@@ -35,6 +38,7 @@ jQuery(document).ready(function() {
 
     $("form#data").submit(function(e) {
         e.preventDefault();    
+
         var formData = new FormData(this);
         
         var model = $("#model").val();
@@ -49,7 +53,13 @@ jQuery(document).ready(function() {
             },
             success: function (data) {
                 alert("Success!");
-                window.location.href = "/products/view/" + id; 
+
+                var url = "/products/view/" + id;
+
+                if(location.search.substr(1).split('=')[0] == 'addorder')
+                    url = url + '?addorder=1';
+
+                window.location.href = url; 
             },
             cache: false,
             contentType: false,

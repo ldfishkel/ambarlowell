@@ -7,9 +7,14 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div>
-                        <h3 class="col-lg-12" style="float:none;margin:auto">View Product</h3>
+                <div class="panel-heading" style="padding-top: 0px;">
+                    <div class="row">
+                        <div style="float:left;">
+                            <h3 class="col-lg-12" >View Product</h3>
+                        </div>
+                        <div style="float: right;width:  30%;margin-top: 15px;">
+                            <a  href="/products/edit/{{ $product->id }}" class="btn btn-success">Edit</a>
+                        </div>
                     </div>
                 </div>
 
@@ -18,32 +23,69 @@
                         <div class="row">
 
                             <div class="col-md-12">
-                                
-                                <div style="margin-top:10px"  class="row">
-                                    {{ Form::label('model', 'Model', array('class' => 'col-md-3 control-label')) }}
-                                    <div class="col-md-4">
+
+                                <div class="row">
+
+                                    <div style="float: left">
+
+                                        <div style="margin-top:10px">
+                                            {{ Form::label('model', 'Model', array('class' => 'col-md-3 control-label')) }}
+                                            <div class="col-md-4">
+                                                <p>{{ $product->model }}</p>
+                                            </div>
+                                        </div>
+
+                                        <div style="margin-top:10px">
+                                            {{ Form::label('fabricated', 'Fabricated', array('class' => 'col-md-3 control-label')) }}
+                                            <div class="col-md-1">
+                                                <span id="fabricated">{{  ($product->fabricated == 1) ? "Yes" : "No" }}</span>
+                                            </div>
+                                        </div>
                                         
-                                        <p>{{ $product->model }}</p>
-                                        <span class="help-block hidden message"></span>
                                     </div>
+
+                                    <div style="float: right; width: 55%; margin-right: 10px;">
+                                        @if (is_dir(public_path().'/assets/img/'.$product->model))
+                    
+                                        <div >
+                                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+                                                <!-- Wrapper for slides -->
+                                                <div class="carousel-inner">
+
+                                                    @foreach (File::allFiles(public_path().'/assets/img/'.$product->model) as $file)
+
+                                                        <div class="item">
+                                                            <img src="/assets/img/{{ $product->model.'/'.$file->getRelativePathName() }}" style="width:100%;">
+                                                        </div>
+                       
+                                                    @endforeach
+                                                   
+                                                </div>
+
+                                                <!-- Left and right controls -->
+                                                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        @endif
+
+                                    </div>
+                                    
+                                    
                                 </div>
+                                
 
                                 <div style="margin-top:10px"  class="row">
                                     {{ Form::label('description', 'Description', array('class' => 'col-md-3 control-label')) }}
                                     <div class="col-md-9">
                                         <p>{{  $product->description }}</p>
-                                        <span class="help-block hidden message"></span>
                                     </div>
-                                </div>
-
-
-                                 <div style="margin-top:10px"  class="row">
-                                    {{ Form::label('fabricated', 'Fabricated', array('class' => 'col-md-3 control-label')) }}
-                                    <div class="col-md-1">
-                                        <span id="fabricated">{{  ($product->fabricated == 1) ? "Yes" : "No" }}</span>
-                                        <span class="help-block hidden message"></span>
-                                    </div>
-                                    
                                 </div>
 
                                 <div style="margin-top:10px"  class="row">
@@ -67,7 +109,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row" style="display: none">
                                 
                                    <table style="width:100%" class="table table-bordered" id="tag-table">
                                         <thead>
@@ -92,46 +134,6 @@
                         </div>
                         
                     </div>
-                            
-                    <div style="margin-top:10px; margin-bottom: 30px" class="form-actions">
-                        <div class="row">
-                            <div class="row">
-                                <div class="col-lg-1" style="float:none;margin:auto">
-                                    <a href="/products/edit/{{ $product->id }}" class="btn btn-success">Edit</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    @if (is_dir(public_path().'/assets/img/'.$product->model))
-                    
-                    <div style="width:50%; float:none; margin:auto">
-                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-
-                            <!-- Wrapper for slides -->
-                            <div class="carousel-inner">
-
-                                @foreach (File::allFiles(public_path().'/assets/img/'.$product->model) as $file)
-
-                                    <div class="item">
-                                        <img src="/assets/img/{{ $product->model.'/'.$file->getRelativePathName() }}" style="width:100%;">
-                                    </div>
-   
-                                @endforeach
-                               
-                            </div>
-
-                            <!-- Left and right controls -->
-                            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    @endif
 
                 </div>
             </div>

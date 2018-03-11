@@ -6,7 +6,11 @@ jQuery(document).ready(function() {
         pageLength : 100,
         ajax: { url : "/orders/data/pending"},
         columns: [
-            { data: 'id', name: 'id' },
+            { data: 'id', name: 'id', 
+            render:  function ( data, type, full, meta ) { 
+                    return '<a href="javascript:;" class="btn btn-info btn-xs view">' + data + '</a>';
+                }
+            },
             { data: 'date', name: 'date',
             render: function ( data, type, full, meta ) { 
                 var buttons = '<span class="label label-success stockCell">' + data + '</span>';
@@ -22,16 +26,15 @@ jQuery(document).ready(function() {
                 if (fabricator == null)
                     fabricator = 'Fabricator';
 
-                var buttons = '<a  href="javascript:;" class="btn btn-info btn-xs view">View</a>'
-                            + '<div style="margin-left:5px; display:inline" class="dropdown">'
-                            +        '<button class="btn btn-danger btn-xs" type="button" data-toggle="dropdown"><span id="fabricator_' + full.id + '">' + fabricator + '</span>'
+                var buttons = '<div style="margin-left:5px; display:inline" class="dropdown">'
+                            +        '<button style="margin-top:2px;" class="btn btn-danger btn-xs" type="button" data-toggle="dropdown"><span id="fabricator_' + full.id + '">' + fabricator + '</span>'
                             +        '<span class="caret"></span></button>'
                             +        '<ul class="dropdown-menu">'
                             +            '<li><a class="fabricatorItem_' + full.id + '">Pela</a></li>'
                             +            '<li><a class="fabricatorItem_' + full.id + '">Felix</a></li>'
                             +        '</ul>'
                             +    '</div>'
-                            + '<button type="button" style="margin-left:5px" class="btn btn-success btn-xs ready" data-toggle="modal" data-target="#readyModal">Ready</button>' ; 
+                            + '<button type="button" style="margin-top:2px; margin-left:5px" class="btn btn-success btn-xs ready" data-toggle="modal" data-target="#readyModal">Ready</button>' ; 
                 
                 $(".fabricatorItem_" + full.id ).on("click", function() {
                     $("#fabricator_" + full.id).html($(this).html());
@@ -64,7 +67,11 @@ jQuery(document).ready(function() {
         pageLength : 100,
         ajax: { url : "/orders/data/ready"},
         columns: [
-            { data: 'id', name: 'id' },
+            { data: 'id', name: 'id', 
+            render:  function ( data, type, full, meta ) { 
+                    return '<a href="javascript:;" class="btn btn-info btn-xs view">' + data + '</a>';
+                }
+            },
             { data: 'date', name: 'date',
             render: function ( data, type, full, meta ) { 
                 var buttons = '<span class="label label-success stockCell">' + data + '</span>';
@@ -80,8 +87,7 @@ jQuery(document).ready(function() {
                 if (fabricator == null)
                     fabricator = 'Fabricator';
 
-                var buttons = '<a  href="javascript:;" class="btn btn-info btn-xs view">View</a>'
-                            + '<button type="button" style="margin-left:5px" class="btn btn-success btn-xs status" data-toggle="modal" data-target="#statusModal">Status</button>' ; 
+                var buttons = '<button type="button" style="margin-left:5px" class="btn btn-success btn-xs status" data-toggle="modal" data-target="#statusModal">Status</button>' ; 
                 
                 return buttons;
             } }
@@ -91,50 +97,52 @@ jQuery(document).ready(function() {
     var tableSold = $('#order-table-sold').DataTable({
         processing: true,
         serverSide: true,
+        pageLength : 100,
         ajax: { url : "/orders/data/sold"},
         columns: [
-            { data: 'id', name: 'id' },
+            { data: 'id', name: 'id', 
+            render:  function ( data, type, full, meta ) { 
+                    return '<a href="javascript:;" class="btn btn-info btn-xs view">' + data + '</a>';
+                }
+            },
             { name: 'name', data : 'name', searchable : false },
-            { data: 'date', name: 'date' },
-            { data: "Action", orderable: false,
-            render: function ( data, type, full, meta ) { 
-                return '<a  href="javascript:;" class="btn btn-info btn-xs view">View</a>';
-            } }
+            { data: 'date', name: 'date' }
         ]
     });
 
     var tableCancelled = $('#order-table-cancelled').DataTable({
         processing: true,
         serverSide: true,
+        pageLength : 100,
         ajax: { url : "/orders/data/cancelled"},
         columns: [
-            { data: 'id', name: 'id' },
+            { data: 'id', name: 'id', 
+            render:  function ( data, type, full, meta ) { 
+                    return '<a href="javascript:;" class="btn btn-info btn-xs view">' + data + '</a>';
+                }
+            },
             { name: 'name', data : 'name', searchable : false },
             { data: 'date', name: 'date' },
-            { data: "Action", orderable: false,
-            render: function ( data, type, full, meta ) { 
-                return '<a  href="javascript:;" class="btn btn-info btn-xs view">View</a>';
-            } }
         ]
     });
 
     table.on('click', '.view', function (e) {
-        var id = $(this).parent().siblings(":first").text();
+        var id = $(this).text();
         window.location.href = "/orders/view/" + id; 
     });
 
     tableSold.on('click', '.view', function (e) {
-        var id = $(this).parent().siblings(":first").text();
+        var id = $(this).text();
         window.location.href = "/orders/view/" + id; 
     });
 
     tableReady.on('click', '.view', function (e) {
-        var id = $(this).parent().siblings(":first").text();
+        var id = $(this).text();
         window.location.href = "/orders/view/" + id; 
     });
 
     tableCancelled.on('click', '.view', function (e) {
-        var id = $(this).parent().siblings(":first").text();
+        var id = $(this).text();
         window.location.href = "/orders/view/" + id; 
     });
 

@@ -26,76 +26,71 @@
 
                             <div class="col-md-6">
                                 
-                                <div class="form-group">
-                                    {{ Form::label('model', 'Model', array('class' => 'col-md-3 control-label')) }}
-                                    <div class="col-md-4">
-                                        {{ Form::hidden('id', $product->id, array('id' => 'id', 'class' => 'form-control')) }}
-                                        {{ Form::text('model', $product->model, array('disabled' => 'true', 'class' => 'form-control')) }}
-                                        <span class="help-block hidden message"></span>
+                                <div class="row">
+                                    <div style="float: left; width: 50%">
+                                        {{ Form::label('model', 'Model', array('class' => 'col-md-3 control-label')) }}
+                                        <div class="col-md-4">
+                                            {{ Form::hidden('id', $product->id, array('id' => 'id', 'class' => 'form-control')) }}
+                                            {{ Form::text('model', $product->model, array('disabled' => 'true', 'class' => 'form-control')) }}
+                                        </div>
                                     </div>
+
+                                     <div style="float:right">
+                                        {{ Form::label('fabricated', 'Fabricated', array('class' => 'col-md-3 control-label')) }}
+                                        <div class="col-md-1">
+                                            {{ Form::checkbox('fabricated', $product->fabricated, false, ['class' => 'form-control']) }}
+                                        </div>
+                                        
+                                    </div>
+                                    
                                 </div>
 
                                 <div class="form-group">
                                     {{ Form::label('description', 'Description', array('class' => 'col-md-3 control-label')) }}
                                     <div class="col-md-9">
                                         {{ Form::text('description', $product->description, array('class' => 'form-control')) }}
-                                        <span class="help-block hidden message"></span>
                                     </div>
                                 </div>
 
 
-                                 <div class="form-group">
-                                    {{ Form::label('fabricated', 'Fabricated', array('class' => 'col-md-3 control-label')) }}
-                                    <div class="col-md-1">
-                                        {{ Form::checkbox('fabricated', $product->fabricated, false, ['class' => 'form-control']) }}
-                                        <span class="help-block hidden message"></span>
+
+                                   
+                                <div class="form-group">
+                                    {{ Form::label('cost', 'Cost', array('id' => '', 'class' => 'col-md-3 control-label')) }}
+                                    <div class="col-md-3">
+                                    {{ Form::number('cost', $product->cost , array('id' => 'cost', 'class' => 'form-control')) }}
                                     </div>
-                                    
                                 </div>
 
                                 <div class="form-group">
-                                   
-                                    <div class="form-group">
-                                        {{ Form::label('cost', 'Cost', array('id' => '', 'class' => 'col-md-3 control-label')) }}
-                                        <div class="col-md-3">
-                                        {{ Form::number('cost', $product->cost , array('id' => 'cost', 'class' => 'form-control')) }}
-                                        </div>
+                                    {{ Form::label('wholesale', 'Wholesale', array('id' => '', 'class' => 'col-md-3 control-label')) }}
+                                    <div class="col-md-3">
+                                    {{ Form::number('wholesale', $product->wholesale , array('id' => 'wholesale', 'class' => 'form-control')) }}
                                     </div>
-
-                                    <div class="form-group">
-                                        {{ Form::label('wholesale', 'Wholesale', array('id' => '', 'class' => 'col-md-3 control-label')) }}
-                                        <div class="col-md-3">
-                                        {{ Form::number('wholesale', $product->wholesale , array('id' => 'wholesale', 'class' => 'form-control')) }}
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        {{ Form::label('retail', 'Retail', array('id' => '', 'class' => 'col-md-3 control-label')) }}
-                                        <div class="col-md-3">
-                                        {{ Form::number('retail', $product->retail , array('id' => 'retail', 'class' => 'form-control')) }}
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        {{ Form::label('tags', 'Tags', array('id' => '', 'class' => 'col-md-3 control-label')) }}
-                                        <div class="col-md-3">
-                                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Tags</button>
-                                        </div>
-                                    </div>
-
                                 </div>
+
+                                <div class="form-group">
+                                    {{ Form::label('retail', 'Retail', array('id' => '', 'class' => 'col-md-3 control-label')) }}
+                                    <div class="col-md-3">
+                                    {{ Form::number('retail', $product->retail , array('id' => 'retail', 'class' => 'form-control')) }}
+                                    </div>
+                                </div>
+
+                                <!--<div class="form-group">
+                                    {{ Form::label('tags', 'Tags', array('id' => '', 'class' => 'col-md-3 control-label')) }}
+                                    <div class="col-md-3">
+                                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Tags</button>
+                                    </div>
+                                </div>-->
+
                             </div>
 
                         </div>
                     </div>
                             
                     <div class="form-actions">
-                        <div class="row">
-                            <div class="row">
-                                <div class="col-lg-1" style="float:none;margin:auto">
-                                    <a id="submit" class="btn btn-success">Submit</a>
-                                </div>
-                            </div>
+                        <div class="row" style="margin:auto; width: fit-content;">
+                            <a id="submit" class="btn btn-xl btn-success">Save<span style="margin-left: 5px" class="glyphicon glyphicon-floppy-disk"></span></a>
                         </div>
                     </div>
 
@@ -103,17 +98,21 @@
                     
                     <hr />
 
-                    <div class="panel-heading">
+                    <div class="panel-heading" style="text-align: center">
                         <div>
                             <h3 class="col-lg-12" style="float:none;margin:auto">Upload Images</h3>
                         </div>
                     </div>
 
                     <div class="panel-body">
-                        <div style="float:none;margin:auto" class="row">
+                        <div style="float:none;width:fit-content;margin:auto" class="row">
                             <form id="data" method="post" enctype="multipart/form-data">
-                                <input style="float:left" type="file" id="photos" class="btn btn-success" name="photos[]" multiple />
-                                <input type="submit" style="float:right;" id="upload" class="btn btn-success">Upload</a>
+                                <label id="browseFile" class="btn btn-default">
+                                    Browse
+                                    <span class="glyphicon glyphicon-search"></span>  
+                                    <input style="width: 135px;" type="file"  id="photos" class="hidden" name="photos[]" multiple />
+                                </label>
+                                <input class="glyphicon glyphicon-upload btn btn-success" type="submit"/>
                             </form>
                         </div>
                     </div>
