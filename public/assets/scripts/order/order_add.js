@@ -18,7 +18,8 @@ jQuery(document).ready(function() {
                             { data: 'image', name: 'image',
                                 render: function ( data, type, full, meta ) { 
 
-                                    var img = '<img width="255px" id="prod_'+ full.id +'" class="image productImage" src="https://www.google.com.ar/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">';
+                                     var img = '<p id="prod_' + full.id + '" style="float:left;width:65%" class="image productImage">'+ full.description +'</p>' 
+                                    + '<button id="edit_' + full.id + '" style="display:block;float:right;width:35%" class="btn btn-md btn-success addImage">Add Image</button>'
                                     if (data && data != '') 
                                         img = '<img width="255px" id="prod_'+ full.id +'" class="productImage" src="/assets/img/'+ data +'"">';
                                     
@@ -28,6 +29,14 @@ jQuery(document).ready(function() {
                                 }
                             }
                         ]
+                    });
+
+                    oTable.on("click", ".addImage", function() {
+                        $("#closePF").click();
+                        document.getElementById("newIframe").src = "/products/" + $(this).attr("id").replace('_', '/') + "?addorder=1";
+                        setTimeout(function() {
+                            $("#addNew").click();
+                        }, 250);
                     });
 
                     oTable.on("click", ".productImage", function() {
@@ -86,7 +95,8 @@ jQuery(document).ready(function() {
                             { data: 'image', name: 'image',
                                 render: function ( data, type, full, meta ) { 
 
-                                    var img = '<img width="255px" id="prod_'+ full.id +'" class="image productImage" src="https://www.google.com.ar/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">';
+                                     var img = '<p id="prod_' + full.id + '" style="float:left;width:65%" class="image productImage">'+ full.description +'</p>' 
+                                    + '<button id="edit_' + full.id + '" style="display:block;float:right;width:35%" class="btn btn-md btn-success addImage">Add Image</button>'
                                     if (data && data != '') 
                                         img = '<img width="255px" id="prod_'+ full.id +'" class="productImage" src="/assets/img/'+ data +'"">';
                                     
@@ -96,6 +106,14 @@ jQuery(document).ready(function() {
                                 }
                             }
                         ]
+                    });
+
+                    oTable.on("click", ".addImage", function() {
+                        $("#closePI").click();
+                        document.getElementById("newIframe").src = "/products/" + $(this).attr("id").replace('_', '/') + "?addorder=1";
+                        setTimeout(function() {
+                            $("#addNew").click();
+                        }, 250);
                     });
 
                     oTable.on("click", ".productImage", function() {
@@ -154,7 +172,8 @@ jQuery(document).ready(function() {
                             { data: 'image', name: 'image',
                                 render: function ( data, type, full, meta ) { 
 
-                                    var img = '<img width="255px" id="prod_'+ full.id +'" class="image productImage" src="https://www.google.com.ar/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">';
+                                     var img = '<p id="prod_' + full.id + '" style="float:left;width:65%" class="image productImage">'+ full.description +'</p>' 
+                                    + '<button id="edit_' + full.id + '" style="display:block;float:right;width:35%" class="btn btn-md btn-success addImage">Add Image</button>'
                                     if (data && data != '') 
                                         img = '<img width="255px" id="prod_'+ full.id +'" class="productImage" src="/assets/img/'+ data +'"">';
                                     
@@ -164,6 +183,14 @@ jQuery(document).ready(function() {
                                 }
                             }
                         ]
+                    });
+
+                    oTable.on("click", ".addImage", function() {
+                        $("#closeAC").click();
+                        document.getElementById("newIframe").src = "/products/" + $(this).attr("id").replace('_', '/') + "?addorder=1";
+                        setTimeout(function() {
+                            $("#addNew").click();
+                        }, 250);
                     });
 
                     oTable.on("click", ".productImage", function() {
@@ -222,7 +249,8 @@ jQuery(document).ready(function() {
                             { data: 'image', name: 'image',
                                 render: function ( data, type, full, meta ) { 
 
-                                    var img = '<img width="255px" id="prod_'+ full.id +'" class="image productImage" src="https://www.google.com.ar/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">';
+                                    var img = '<p id="prod_' + full.id + '" style="float:left;width:65%" class="ifloat:left;mage productImage">'+ full.description +'</p>' 
+                                    + '<button id="edit_' + full.id + '" style="display:block;float:right;width:35%" class="btn btn-md btn-success addImage">Add Image</button>'
                                     if (data && data != '') 
                                         img = '<img width="255px" id="prod_'+ full.id +'" class="productImage" src="/assets/img/'+ data +'"">';
                                     
@@ -232,6 +260,14 @@ jQuery(document).ready(function() {
                                 }
                             }
                         ]
+                    });
+
+                    oTable.on("click", ".addImage", function() {
+                        $("#closeAB").click();
+                        document.getElementById("newIframe").src = "/products/" + $(this).attr("id").replace('_', '/') + "?addorder=1";
+                        setTimeout(function() {
+                            $("#addNew").click();
+                        }, 250);
                     });
 
                     oTable.on("click", ".productImage", function() {
@@ -310,10 +346,8 @@ jQuery(document).ready(function() {
         $('.modal-backdrop').remove();
     });
 
-    $("#addProductModal").on("hidden.bs.modal", function () {
-        console.log(tablePFManagement.tablePF.table);
-        $('body').removeClass('modal-open');
-        $('.modal-backdrop').remove();
+    $("#closeNew").on("click", function() {
+        document.getElementById("newIframe").src = "/products/add";
     });
 
     $("#pfSearch").on("click", function() {

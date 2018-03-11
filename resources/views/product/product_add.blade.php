@@ -24,30 +24,38 @@
 
                             <div class="col-md-6">
                                 
-                                <div class="form-group">
+                                <div class="row">
+                                    <div style="float:left">
 
+                                        {{ Form::label('type', 'Type', array('class' => 'col-md-3 control-label')) }}
 
-                                    {{ Form::label('type', 'Type', array('class' => 'col-md-3 control-label')) }}
-                                    
+                                        <div class="col-md-4">
+                                        
+                                            <div style="display:inline" class="dropdown">
+                                                <button class="btn btn-info btn-lg" type="button" data-toggle="dropdown"><span id="type">Type</span>
+                                                <span class="caret"></span></button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="typeItem">PF</a></li>
+                                                    <li><a class="typeItem">PI</a></li>
+                                                    <li><a class="typeItem">AC</a></li>
+                                                    <li><a class="typeItem">AB</a></li>
+                                                </ul>
+                                            </div>
 
-
-                                    <div class="col-md-4">
-                                    
-                                        <div style="display:inline" class="dropdown">
-                                            <button class="btn btn-info btn-lg" type="button" data-toggle="dropdown"><span id="type">Type</span>
-                                            <span class="caret"></span></button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="typeItem">PF</a></li>
-                                                <li><a class="typeItem">PI</a></li>
-                                                <li><a class="typeItem">AC</a></li>
-                                                <li><a class="typeItem">AB</a></li>
-                                            </ul>
                                         </div>
-
                                     </div>
+
+                                    <div style="float:right">
+                                        {{ Form::label('fabricated', 'Fabricated', array('class' => 'col-md-3 control-label')) }}
+                                        <div class="col-md-1">
+                                            {{ Form::checkbox('fabricated', '0', false, array('class' => 'form-control')) }}
+                                            <span class="help-block hidden message"></span>
+                                        </div>
+                                    </div>
+                                
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group" style="margin-top: 10px">
                                     {{ Form::label('description', 'Description', array('class' => 'col-md-3 control-label')) }}
                                     <div class="col-md-9">
                                         {{ Form::text('description', '', array('class' => 'form-control')) }}
@@ -56,58 +64,44 @@
                                 </div>
 
 
-                                 <div class="form-group">
-                                    {{ Form::label('fabricated', 'Fabricated', array('class' => 'col-md-3 control-label')) }}
-                                    <div class="col-md-1">
-                                        {{ Form::checkbox('fabricated', '0', false, array('class' => 'form-control')) }}
-                                        <span class="help-block hidden message"></span>
-                                    </div>
                                     
+
+                                <div class="form-group">
+                                    {{ Form::label('cost', 'Cost', array('id' => '', 'class' => 'col-md-3 control-label')) }}
+                                    <div class="col-md-3">
+                                    {{ Form::number('cost', '' , array('id' => 'cost', 'class' => 'form-control')) }}
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
-                                   
-                                    <div class="form-group">
-                                        {{ Form::label('cost', 'Cost', array('id' => '', 'class' => 'col-md-3 control-label')) }}
-                                        <div class="col-md-3">
-                                        {{ Form::number('cost', '' , array('id' => 'cost', 'class' => 'form-control')) }}
-                                        </div>
+                                    {{ Form::label('wholesale', 'Wholesale', array('id' => '', 'class' => 'col-md-3 control-label')) }}
+                                    <div class="col-md-3">
+                                    {{ Form::number('wholesale', '' , array('id' => 'wholesale', 'class' => 'form-control')) }}
                                     </div>
-
-                                    <div class="form-group">
-                                        {{ Form::label('wholesale', 'Wholesale', array('id' => '', 'class' => 'col-md-3 control-label')) }}
-                                        <div class="col-md-3">
-                                        {{ Form::number('wholesale', '' , array('id' => 'wholesale', 'class' => 'form-control')) }}
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        {{ Form::label('retail', 'Retail', array('id' => '', 'class' => 'col-md-3 control-label')) }}
-                                        <div class="col-md-3">
-                                        {{ Form::number('retail', '' , array('id' => 'retail', 'class' => 'form-control')) }}
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        {{ Form::label('tags', 'Tags', array('id' => '', 'class' => 'col-md-3 control-label')) }}
-                                        <div class="col-md-3">
-                                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Tags</button>
-                                        </div>
-                                    </div>
-
                                 </div>
+
+                                <div class="form-group">
+                                    {{ Form::label('retail', 'Retail', array('id' => '', 'class' => 'col-md-3 control-label')) }}
+                                    <div class="col-md-3">
+                                    {{ Form::number('retail', '' , array('id' => 'retail', 'class' => 'form-control')) }}
+                                    </div>
+                                </div>
+
+                               <!-- <div class="form-group">
+                                    {{ Form::label('tags', 'Tags', array('id' => '', 'class' => 'col-md-3 control-label')) }}
+                                    <div class="col-md-3">
+                                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Tags</button>
+                                    </div>
+                                </div>-->
+
                             </div>
 
                         </div>
                     </div>
                             
                     <div class="form-actions">
-                        <div class="row">
-                            <div class="row">
-                                <div class="col-lg-1" style="float:none;margin:auto">
-                                    <a id="submit" class="btn btn-success">Submit</a>
-                                </div>
-                            </div>
+                        <div class="row" style="margin:auto; width: fit-content;">
+                            <a id="submit" class="btn btn-xl btn-success">Save<span style="margin-left: 5px" class="glyphicon glyphicon-floppy-disk"></span></a>
                         </div>
                     </div>
 

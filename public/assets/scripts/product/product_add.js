@@ -1,5 +1,8 @@
 jQuery(document).ready(function() {
 
+    if(location.search.substr(1).split('=')[0] == 'addorder')
+        $(".navbar-header").css('display', 'none');
+
     $("#fabricated").on("change", function() {
         if ($("#fabricated").val() == 0)
             $("#fabricated").val(1);
@@ -69,8 +72,13 @@ jQuery(document).ready(function() {
             },
             'success' : function(response) {
                 alert("Success!");
+                
+                var url = "/products/edit/" + response;
 
-                window.location.href = "/products/edit/" + response; 
+                if(location.search.substr(1).split('=')[0] == 'addorder')
+                    url = url + '?addorder=1';
+
+                window.location.href = url; 
             }
         });
     });

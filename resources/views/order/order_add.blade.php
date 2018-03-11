@@ -42,7 +42,7 @@
                                         AB <span class="glyphicon glyphicon-search"></span>
                                     </button>
 
-                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addProductModal">
+                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-info btn-sm" id="addNew" data-toggle="modal" data-target="#addProductModal">
                                         NEW <span class="glyphicon glyphicon-plus"></span>
                                     </button>
                                     
@@ -83,7 +83,9 @@
                                     </ul>
                                 </div>
 
-                                <button style="float:right" type="button" class="btn btn-success btn-lg" id="submit">Submit</button>
+                                <div class="row" style="float: right; margin-right: 0px">
+                                    <a id="submit" class="btn btn-xl btn-success">Save<span style="margin-left: 5px" class="glyphicon glyphicon-floppy-disk"></span></a>
+                                </div>
 
                             </div>
 
@@ -283,11 +285,11 @@
           <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" id="closeNew" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Items</h4>
                 </div>
                 <div class="modal-body">
-                <iframe width="100%" height="500px" src="/products/add"></iframe>   
+                    <iframe width="100%" height="500px" id="newIframe" src="/products/add?addorder=1"></iframe>   
                 </div>
             </div>
         </div>
