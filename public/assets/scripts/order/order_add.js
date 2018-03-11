@@ -1,56 +1,115 @@
 jQuery(document).ready(function() {
+    
+    var tablePFManagement = function()
+    {
+        var tablePF = function()
+        {
+            var self = {
+                table : null,
 
-    var table = $('#product-table-pf').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: { url : "/products/data/pf"},
-        pageLength : 100,
-        columns: [
-            { data: 'image', name: 'image',
-                render: function ( data, type, full, meta ) { 
+                init : function()
+                {
+                    var oTable = $('#product-table-pf').DataTable({
+                        processing: true,
+                        serverSide: true,
+                        ajax: { url : "/products/data/pf"},
+                        pageLength : 100,
+                        columns: [
+                            { data: 'image', name: 'image',
+                                render: function ( data, type, full, meta ) { 
 
-                    var img = '<img width="255px" id="prod_'+ full.id +'" class="image productImage" src="https://www.google.com.ar/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">';
-                    if (data && data != '') 
-                        img = '<img width="255px" id="prod_'+ full.id +'" class="productImage" src="/assets/img/'+ data +'"">';
-                    
-                    img = img + "<input type='hidden' class='productData prod_"+ full.id +"' value='" + JSON.stringify(full) + "'>" ;
+                                    var img = '<img width="255px" id="prod_'+ full.id +'" class="image productImage" src="https://www.google.com.ar/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">';
+                                    if (data && data != '') 
+                                        img = '<img width="255px" id="prod_'+ full.id +'" class="productImage" src="/assets/img/'+ data +'"">';
+                                    
+                                    img = img + "<input type='hidden' class='productData prod_"+ full.id +"' value='" + JSON.stringify(full) + "'>" ;
 
-                    return img;
+                                    return img;
+                                }
+                            }
+                        ]
+                    });
+
+                    oTable.on("click", ".productImage", function() {
+        
+                        console.log($(this).attr("id"));
+                        var data = JSON.parse($("." + $(this).attr("id")).val());
+
+                        $("#product_id").val(data.id);
+                        $("#model").val(data.model);
+                        $("#description").val(data.description);
+                        $("#wholesale").val(data.wholesale);
+                        $("#retail").val(data.retail);
+                        $("#amount").val(1);
+                        $("#unit_price").val(data.retail);
+                        $("#description").prop("disabled", true);
+                        $("#model").prop("disabled", true);
+                        $("#wholesale").prop("disabled", true);
+                        $("#retail").prop("disabled", true);
+                        $("#unit_price").prop("disabled", false);
+                        $("#amount").prop("disabled", false);
+                        $("#add_item").removeClass("disabled");
+                        $("#clean_item").removeClass("disabled");
+                        if (data.image && data.image != '')
+                            $("#imgHolder").html('<img width="255px" src="/assets/img/'+ data.image +'"">');
+                        else
+                            $("#imgHolder").html('<img width="100px" class="image" src="https://www.google.com.ar/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">');
+                        
+                        $("#closePF").click();
+                        setTimeout(function() {$("#itemsList").click();}, 250);
+                        
+                    });
+
+                    self.table = oTable;
+
+                } 
+            };
+
+            self.init();
+
+            return self;
+        }
+
+        var self = {
+
+            tablePF     : tablePF(),
+            //main function to initiate the module
+            init: function () {
+                if (!jQuery().dataTable) {
+                    return;
                 }
             }
-        ]
+
+        };
+        
+        self.init();
+
+        return self;
+    }();
+
+
+    $(".close").on("click", function() {
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove(); 
     });
 
-    table.on("click", ".productImage", function() {
-        
-        console.log($(this).attr("id"));
-        var data = JSON.parse($("." + $(this).attr("id")).val());
-
-        $("#product_id").val(data.id);
-        $("#model").val(data.model);
-        $("#description").val(data.description);
-        $("#wholesale").val(data.wholesale);
-        $("#retail").val(data.retail);
-        $("#amount").val(1);
-        $("#unit_price").val(data.retail);
-        $("#description").prop("disabled", true);
-        $("#model").prop("disabled", true);
-        $("#wholesale").prop("disabled", true);
-        $("#retail").prop("disabled", true);
-        $("#unit_price").prop("disabled", false);
-        $("#amount").prop("disabled", false);
-        $("#add_item").removeClass("disabled");
-        $("#clean_item").removeClass("disabled");
-        if (data.image && data.image != '')
-            $("#imgHolder").html('<img width="255px" src="/assets/img/'+ data.image +'"">');
-        else
-            $("#imgHolder").html('<img width="100px" class="image" src="https://www.google.com.ar/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png">');
-        
-        $("#pfSelection").modal("hide");
-        $("#myModal2").modal("show");
+    $("#myModal").on("hidden.bs.modal", function () {
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
     });
 
-   
+    $("#myModal2").on("hidden.bs.modal", function () {
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
+    });
+
+    $("#addProductModal").on("hidden.bs.modal", function () {
+        console.log(tablePFManagement.tablePF.table);
+        tablePFManagement.tablePF.table.ajax.reload();
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
+    });
+
     var clean = function() {
         $("#p").val("");
         $("#product_id").val("");

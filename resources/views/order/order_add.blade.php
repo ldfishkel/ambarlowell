@@ -47,7 +47,7 @@
                                         NEW <span class="glyphicon glyphicon-plus"></span>
                                     </button>
                                     
-                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#myModal2">
+                                    <button type="button" style="display:inline-block; margin-top: 5px" id="itemsList" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#myModal2">
                                         Items <span class="glyphicon glyphicon-list"></span>
                                     </button>
                                 </div>
@@ -97,7 +97,7 @@
 <!--______________________________________MODAL CLIENTS_______________________________________________________________-->
 <!--__________________________________________________________________________________________________________________-->
 
-    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal fade" id="myModal" role="dialog" style="overflow-y: scroll !important;">
         <div class="modal-dialog">
         
           <!-- Modal content-->
@@ -166,7 +166,7 @@
 <!--______________________________________MODAL ITEMS_________________________________________________________________-->
 <!--__________________________________________________________________________________________________________________-->
 
-    <div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal fade" id="myModal2" role="dialog" style="overflow-y: scroll !important;">
         <div class="modal-dialog">
         
           <!-- Modal content-->
@@ -296,13 +296,13 @@
 <!--______________________________________PF__________________________________________________________________________-->
 <!--__________________________________________________________________________________________________________________-->
 
-    <div class="modal fade" id="pfSelection" role="dialog">
+    <div class="modal fade" id="pfSelection" role="dialog" style="overflow-y: scroll !important;">
         <div class="modal-dialog">
         
           <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" id="closePF" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Items</h4>
                 </div>
                 <div class="modal-body">
@@ -326,7 +326,6 @@
 @section('scripts')
     {{ HTML::script('assets/scripts/jquery.min.js') }}
     {{ HTML::script('assets/scripts/jquery-ui.min.js') }}
-    {{ HTML::script('assets/scripts/bootstrap.min.js') }}
     {{ HTML::script('assets/scripts/datatables.js') }}
     {{ HTML::script('assets/scripts/validators/orderValidator.js') }}
     {{ HTML::script('assets/scripts/order/order_add.js') }}
