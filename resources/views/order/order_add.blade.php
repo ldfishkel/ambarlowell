@@ -5,6 +5,11 @@
     .ui-widget-content {
     z-index: 10000000000 !important;
     }
+
+    .dropdown-menu 
+    {
+        width: 100%
+    }
 </style>
 @section('content')
 <div class="container">
@@ -60,10 +65,10 @@
                                     <button class="btn btn-info btn-lg" style="width: 100%; text-align: left" type="button" data-toggle="dropdown"><span id="channel">Channel</span>
                                     <span style="float: right;" class="caret"></span></button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="channelItem">Instagram</a></li>
-                                        <li><a class="channelItem">Facebook</a></li>
-                                        <li><a class="channelItem">MercadoLibre</a></li>
-                                        <li><a class="channelItem">Contact</a></li>
+                                        <li><a class="btn btn-info btn-lg channelItem">Instagram</a></li>
+                                        <li><a class="btn btn-info btn-lg channelItem">Facebook</a></li>
+                                        <li><a class="btn btn-info btn-lg channelItem">MercadoLibre</a></li>
+                                        <li><a class="btn btn-info btn-lg channelItem">Contact</a></li>
                                     </ul>
                                 </div>
 
@@ -71,8 +76,8 @@
                                     <button class="btn btn-danger btn-lg" style="width: 100%; text-align: left" type="button" data-toggle="dropdown"><span id="fabricator">Fabricator</span>
                                     <span style="float: right;" class="caret"></span></button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="fabricatorItem">Pela</a></li>
-                                        <li><a class="fabricatorItem">Felix</a></li>
+                                        <li><a class="btn btn-danger btn-lg fabricatorItem">Pela</a></li>
+                                        <li><a class="btn btn-danger btn-lg fabricatorItem">Felix</a></li>
                                     </ul>
                                 </div>
 
@@ -80,9 +85,9 @@
                                     <button class="btn btn-warning btn-lg" style="width: 100%; text-align: left" type="button" data-toggle="dropdown"><span id="type">Type</span>
                                     <span style="float: right;"  class="caret"></span></button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="typeItem">Retail</a></li>
-                                        <li><a class="typeItem">Wholesale</a></li>
-                                        <li><a class="typeItem">Settlement</a></li>
+                                        <li><a class="btn btn-warning btn-lg typeItem">Retail</a></li>
+                                        <li><a class="btn btn-warning btn-lg typeItem">Wholesale</a></li>
+                                        <li><a class="btn btn-warning btn-lg typeItem">Settlement</a></li>
                                     </ul>
                                 </div>
 
