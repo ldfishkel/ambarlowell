@@ -286,7 +286,7 @@
                     <h4 class="modal-title">Items</h4>
                 </div>
                 <div class="modal-body">
-                <iframe height="500px" src="/products/add"></iframe>   
+                <iframe width="100%" height="500px" src="/products/add"></iframe>   
                 </div>
             </div>
         </div>
