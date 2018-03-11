@@ -23,35 +23,36 @@
 
                             <div style="padding-left:20px;padding-right:20px;" class="form-group">
 
-                                <button type="button" style="display: block" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Client</button>
                                 
                                 <div style="display: block">
     
-                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#pfSelection">
+                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-info btn-sm" data-toggle="modal" data-target="#pfSelection">
                                         PF <span class="glyphicon glyphicon-search"></span>
                                     </button>
 
-                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#myModal2">
+                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal2">
                                         PI <span class="glyphicon glyphicon-search"></span>
                                     </button>
 
-                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#myModal2">
+                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal2">
                                         AC <span class="glyphicon glyphicon-search"></span>
                                     </button>
 
-                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#myModal2">
+                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal2">
                                         AB <span class="glyphicon glyphicon-search"></span>
                                     </button>
 
-                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#addProductModal">
+                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addProductModal">
                                         NEW <span class="glyphicon glyphicon-plus"></span>
                                     </button>
                                     
-                                    <button type="button" style="display:inline-block; margin-top: 5px" id="itemsList" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#myModal2">
+                                    <button type="button" style="display:block; margin-top: 5px" id="itemsList" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#myModal2">
                                         Items <span class="glyphicon glyphicon-list"></span>
                                     </button>
                                 </div>
 
+                                <button type="button" style="display: block; margin-top: 5px" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Client</button>
+                                
                                 <div style="display:block; margin-top: 5px" class="dropdown">
                                     <button class="btn btn-info btn-lg" type="button" data-toggle="dropdown"><span id="channel">Channel</span>
                                     <span class="caret"></span></button>
