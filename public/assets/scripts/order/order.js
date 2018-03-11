@@ -7,17 +7,15 @@ jQuery(document).ready(function() {
         ajax: { url : "/orders/data/pending"},
         columns: [
             { data: 'id', name: 'id' },
-            { data: 'stock', name: 'stock',
+            { data: 'date', name: 'date',
             render: function ( data, type, full, meta ) { 
-                var buttons = '<span class="label label-success stockCell">Enough</span>';
-                if (data == false) 
-                    buttons = '<span class="label label-danger stockCell">NOT Enough</span>';
+                var buttons = '<span class="label label-success stockCell">' + data + '</span>';
+                if (full.stock == false) 
+                    buttons = '<span class="label label-danger stockCell">' + data + '</span>';
                 
                 return buttons;
             } },
-            { data: 'type', name: 'type' },
             { name: 'name', data : 'name', searchable : false },
-            { data: 'date', name: 'date' },
             { data: "Action", orderable: false,
             render: function ( data, type, full, meta ) { 
                 var fabricator = full.fabricator;
@@ -67,17 +65,15 @@ jQuery(document).ready(function() {
         ajax: { url : "/orders/data/ready"},
         columns: [
             { data: 'id', name: 'id' },
-            { data: 'stock', name: 'stock',
+            { data: 'date', name: 'date',
             render: function ( data, type, full, meta ) { 
-                var buttons = '<span class="label label-success stockCell">Enough</span>';
-                if (data == false) 
-                    buttons = '<span class="label label-danger stockCell">NOT Enough</span>';
+                var buttons = '<span class="label label-success stockCell">' + data + '</span>';
+                if (full.stock == false) 
+                    buttons = '<span class="label label-danger stockCell">' + data + '</span>';
                 
                 return buttons;
             } },
-            { data: 'type', name: 'type' },
             { name: 'name', data : 'name', searchable : false },
-            { data: 'date', name: 'date' },
             { data: "Action", orderable: false,
             render: function ( data, type, full, meta ) { 
                 var fabricator = full.fabricator;
@@ -98,7 +94,6 @@ jQuery(document).ready(function() {
         ajax: { url : "/orders/data/sold"},
         columns: [
             { data: 'id', name: 'id' },
-            { data: 'type', name: 'type' },
             { name: 'name', data : 'name', searchable : false },
             { data: 'date', name: 'date' },
             { data: "Action", orderable: false,
@@ -114,7 +109,6 @@ jQuery(document).ready(function() {
         ajax: { url : "/orders/data/cancelled"},
         columns: [
             { data: 'id', name: 'id' },
-            { data: 'type', name: 'type' },
             { name: 'name', data : 'name', searchable : false },
             { data: 'date', name: 'date' },
             { data: "Action", orderable: false,

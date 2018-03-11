@@ -26,19 +26,19 @@
                                 
                                 <div style="display: block">
     
-                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-info btn-sm" data-toggle="modal" data-target="#pfSelection">
+                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-info btn-sm" id="pfSearch" data-toggle="modal" data-target="#pfSelection">
                                         PF <span class="glyphicon glyphicon-search"></span>
                                     </button>
 
-                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal2">
+                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-info btn-sm" id="piSearch" data-toggle="modal" data-target="#piSelection">
                                         PI <span class="glyphicon glyphicon-search"></span>
                                     </button>
 
-                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal2">
+                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-info btn-sm" id="acSearch" data-toggle="modal" data-target="#acSelection">
                                         AC <span class="glyphicon glyphicon-search"></span>
                                     </button>
 
-                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal2">
+                                    <button type="button" style="display:inline-block; margin-top: 5px" class="btn btn-info btn-sm" id="abSearch" data-toggle="modal" data-target="#abSelection">
                                         AB <span class="glyphicon glyphicon-search"></span>
                                     </button>
 
@@ -308,6 +308,72 @@
                 </div>
                 <div class="modal-body">
                     <table style="width:100%" class="table table-striped table-bordered table-hover" id="product-table-pf">
+                        <thead>
+                            <tr>
+                                <th>image</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="piSelection" role="dialog" style="overflow-y: scroll !important;">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" id="closePI" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Items</h4>
+                </div>
+                <div class="modal-body">
+                    <table style="width:100%" class="table table-striped table-bordered table-hover" id="product-table-pi">
+                        <thead>
+                            <tr>
+                                <th>image</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="acSelection" role="dialog" style="overflow-y: scroll !important;">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" id="closeAC" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Items</h4>
+                </div>
+                <div class="modal-body">
+                    <table style="width:100%" class="table table-striped table-bordered table-hover" id="product-table-ac">
+                        <thead>
+                            <tr>
+                                <th>image</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="abSelection" role="dialog" style="overflow-y: scroll !important;">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" id="closeAB" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Items</h4>
+                </div>
+                <div class="modal-body">
+                    <table style="width:100%" class="table table-striped table-bordered table-hover" id="product-table-ab">
                         <thead>
                             <tr>
                                 <th>image</th>

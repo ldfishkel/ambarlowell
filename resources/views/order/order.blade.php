@@ -30,10 +30,8 @@
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Stock</th>
-                                        <th>Type</th>
-                                        <th>Client</th>
                                         <th>Date</th>
+                                        <th>Client</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -46,10 +44,8 @@
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Stock</th>
-                                        <th>Type</th>
-                                        <th>Client</th>
                                         <th>Date</th>
+                                        <th>Client</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -62,7 +58,6 @@
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Type</th>
                                         <th>Client</th>
                                         <th>Date</th>
                                         <th>Actions</th>
@@ -77,7 +72,6 @@
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Type</th>
                                         <th>Client</th>
                                         <th>Date</th>
                                         <th>Actions</th>
