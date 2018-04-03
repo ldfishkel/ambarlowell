@@ -81,13 +81,15 @@ class DashboardController extends Controller
 				foreach ($items as $item) 
 				{
 					$product = Product::find($item->product_id);
-					$itemsResponse[] = [
-						'id' => $item->id,
-						'product' => $product,
-						'comment' => $item->comment,
-						'amount' => $item->amount,
-						'delayed' => $item->delayed
-					];
+
+					if ($product->fabricated)
+						$itemsResponse[] = [
+							'id' => $item->id,
+							'product' => $product,
+							'comment' => $item->comment,
+							'amount' => $item->amount,
+							'delayed' => $item->delayed
+						];
 				}
 
 				$ordersResponse[] = [
